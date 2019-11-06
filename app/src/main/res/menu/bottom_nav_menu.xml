@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_homepage"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+    <item
+        android:id="@+id/navigation_roommate"
+        android:icon="@drawable/ic_people_black_24dp"
+        android:title="@string/title_dashboard" />
+    <item
+        android:id="@+id/navigation_message"
+        android:icon="@drawable/ic_message_black_24dp"
+        android:title="Message" />
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="Profile" />
+</menu>

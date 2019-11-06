@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".activities.RegisterActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/logo"
+            tools:layout_editor_absoluteX="116dp"
+            tools:layout_editor_absoluteY="16dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REGISTER"
+            android:textSize="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="130dp"
+            tools:layout_editor_absoluteX="137dp"
+            tools:layout_editor_absoluteY="201dp" />
+    </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressbar_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="30dp"
+        android:layout_marginTop="50dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingRight="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"/>
+            <EditText
+                android:id="@+id/edt_name"
+                android:layout_width="@dimen/edt_width"
+                android:layout_height="@dimen/edt_height"
+                android:ems="10"
+                android:hint="Name"
+                android:layout_marginTop="@dimen/text_marginTop"
+                android:inputType="textNoSuggestions"
+                tools:layout_editor_absoluteX="136dp"
+                tools:layout_editor_absoluteY="570dp" />
+            <EditText
+                android:id="@+id/edt_email"
+                android:layout_width="@dimen/edt_width"
+                android:layout_height="@dimen/edt_height"
+                android:ems="10"
+                android:hint="Email"
+                android:layout_marginTop="@dimen/text_marginTop"
+                android:inputType="textEmailAddress"
+                tools:layout_editor_absoluteX="136dp"
+                tools:layout_editor_absoluteY="570dp" />
+            <EditText
+                android:id="@+id/edt_pass"
+                android:layout_width="@dimen/edt_width"
+                android:layout_height="@dimen/edt_height"
+                android:ems="10"
+                android:hint="Password"
+                android:focusableInTouchMode="true"
+                android:imeOptions="actionUnspecified"
+                android:layout_marginTop="@dimen/text_marginTop"
+                android:layout_weight="1"
+                android:inputType="textPassword"
+                tools:layout_editor_absoluteX="58dp"
+                tools:layout_editor_absoluteY="456dp" />
+            <EditText
+                android:id="@+id/edt_confirm_pass"
+                android:layout_width="@dimen/edt_width"
+                android:layout_height="@dimen/edt_height"
+                android:ems="10"
+                android:hint="Confirm Password"
+                android:focusableInTouchMode="true"
+                android:imeOptions="actionUnspecified"
+                android:layout_marginTop="@dimen/text_marginTop"
+                android:layout_weight="1"
+                android:inputType="textPassword"
+                tools:layout_editor_absoluteX="58dp"
+                tools:layout_editor_absoluteY="456dp" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="30dp">
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:text="REGISTER"
+            android:background="@drawable/radius"
+            tools:layout_editor_absoluteX="185dp"
+            tools:layout_editor_absoluteY="640dp" />
+    </LinearLayout>
+</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

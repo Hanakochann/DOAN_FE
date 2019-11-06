@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "451968563431",
+    "firebase_url": "https://doan-2d68e.firebaseio.com",
+    "project_id": "doan-2d68e",
+    "storage_bucket": "doan-2d68e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451968563431:android:1f3da1d958210fbb844a42",
+        "android_client_info": {
+          "package_name": "com.hanakochan.doan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451968563431-uu8cl0l07972acef6in2rmvaln94gcso.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hanakochan.doan",
+            "certificate_hash": "bd1e62b97bb5450dfe47e0edca8952e7307e2509"
+          }
+        },
+        {
+          "client_id": "451968563431-3ee9bmv2pg0hifulk86l1htkt1mcomlk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfYU5XZIkJCWHzzBD5chHkELfHcv69pB8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451968563431-3ee9bmv2pg0hifulk86l1htkt1mcomlk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
