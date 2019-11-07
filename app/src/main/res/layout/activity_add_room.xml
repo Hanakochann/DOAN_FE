@@ -24,11 +24,10 @@
             android:textColor="@color/black"/>
         <Spinner
             android:id="@+id/id_city"
-
             android:layout_width="380dp"
             android:layout_height="50dp"
             android:hint="Select City/Province"
-            android:textSize="18dp" />
+            android:textSize="20dp" />
         <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,7 +40,7 @@
             android:layout_width="380dp"
             android:layout_height="50dp"
             android:hint="Select District"
-            android:textSize="18dp" />
+            android:textSize="20dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +53,7 @@
             android:layout_width="380dp"
             android:layout_height="50dp"
             android:hint="Street"
-            android:textSize="18dp" />
+            android:textSize="20dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -79,7 +78,7 @@
             android:layout_width="380dp"
             android:layout_height="50dp"
             android:hint="Select Type Room"
-            android:textSize="18dp"/>
+            android:textSize="20dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

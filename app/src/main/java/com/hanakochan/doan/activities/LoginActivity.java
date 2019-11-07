@@ -33,6 +33,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.hanakochan.doan.Config.ip_config;
+
 
 public class LoginActivity extends AppCompatActivity {
     public EditText edt_email;
@@ -40,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     public Button buttonLog, buttonCreate;
     private ProgressDialog progressDialog;
     private ProgressBar progressBar;
-    String URL_LOGIN = "http://192.168.119.23/android_register_login/user_login.php";
+    String URL_LOGIN = ip_config+"/user_login.php";
     SessionManager sessionManager;
 
     @Override

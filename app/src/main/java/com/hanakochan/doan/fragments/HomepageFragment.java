@@ -32,11 +32,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static com.hanakochan.doan.Config.ip_config;
+
 public class HomepageFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     Toolbar toolbar;
-    private static String URL_READ = "http://192.168.119.23/android_register_login/load_room.php";
+    private static String URL_READ = ip_config+"/load_room.php";
     String[] title;
     String[] price;
     String[] address;

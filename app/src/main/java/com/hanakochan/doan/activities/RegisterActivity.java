@@ -29,13 +29,15 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.hanakochan.doan.Config.ip_config;
+
 
 public class RegisterActivity extends AppCompatActivity {
     private Button btnRegister;
     private EditText edt_Name, edt_Email, edt_Pass, edt_ConfirmPass;
     private ProgressBar progressBar;
     private ProgressDialog loadingBar;
-    String URL_REGIST = "http://192.168.119.23/android_register_login/user_register.php";
+    String URL_REGIST = ip_config+"/user_register.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

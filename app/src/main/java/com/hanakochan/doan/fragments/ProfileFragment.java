@@ -79,7 +79,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
-
+import static com.hanakochan.doan.Config.ip_config;
 
 
 public class ProfileFragment extends Fragment {
@@ -111,9 +111,9 @@ public class ProfileFragment extends Fragment {
     StorageReference storageReference;
     FirebaseUser firebaseUser;
     DatabaseReference reference;
-    private static String URL_UPDATE = "http://192.168.119.23/android_register_login/update_profile.php";
-    private static String URL_READ = "http://192.168.119.23/android_register_login/load_profile.php";
-    private static String URL_UPLOAD = "http://192.168.119.23/android_register_login/upload_image.php";
+    private static String URL_UPDATE = ip_config+"/update_profile.php";
+    private static String URL_READ = ip_config+"/load_profile.php";
+    private static String URL_UPLOAD = ip_config+"/upload_image.php";
     ProgressDialog progressDialog;
     String getId;
     String [] SpinnerListCountry = {"", "An Giang", "Bà Rịa - Vũng Tàu", "Bắc Giang", "Bắc Kạn", "Bạc Liêu", "Bắc Ninh"
@@ -210,17 +210,6 @@ public class ProfileFragment extends Fragment {
 
         ArrayAdapter<String> arrayAdapterGender = new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_dropdown_item_1line,SpinnerListGender);
         betterSpinnerGender.setAdapter(arrayAdapterGender);
-//        betterSpinnerGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String spinner_gender = parent.getItemAtPosition(position).toString();
-//                Toast.makeText(getActivity(), spinner_gender, Toast.LENGTH_SHORT).show();
-//            }
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -238,7 +227,6 @@ public class ProfileFragment extends Fragment {
                 openGallery();
             }
         });
-//        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
         return view;
     }
