@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
-    android:id="@+id/aa_container">
+    android:id="@+id/aa_roommate_container">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#9CEBA6">
         <ImageView
             android:layout_gravity="center"
-            android:id="@+id/imgView"
+            android:id="@+id/roommate_imgView"
             android:src="@drawable/upload"
             android:layout_margin="10dp"
             android:layout_width="90dp"
@@ -23,7 +23,7 @@
             android:layout_marginTop="10dp"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/tvTitle"
+                android:id="@+id/roommate_tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/tvPrice"
+                    android:id="@+id/roommate_tvPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -65,17 +65,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:text="Number: "
+                    android:text="Gender: "
                     android:layout_toEndOf="@+id/imageView"
                     android:layout_toRightOf="@+id/imageView"
                     android:textColor="#333"
                     android:textSize="14dp"/>
                 <TextView
-                    android:id="@+id/tvnumber"
+                    android:id="@+id/roommate_tvgender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:hint="number"
+                    android:hint="Gender"
                     android:layout_toEndOf="@+id/imageView"
                     android:layout_toRightOf="@+id/imageView"
                     android:textColor="#333"
@@ -95,7 +95,7 @@
                     android:textColor="#333"
                     android:textSize="14dp"/>
                 <TextView
-                    android:id="@+id/tvstreet"
+                    android:id="@+id/roommate_tvstreet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -119,7 +119,7 @@
                     android:textColor="#333"
                     android:textSize="14dp"/>
                 <TextView
-                    android:id="@+id/tvdistrict"
+                    android:id="@+id/roommate_tvdistrict"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -144,7 +144,7 @@
                     android:textColor="#333"
                     android:textSize="14dp"/>
                 <TextView
-                    android:id="@+id/tvcity"
+                    android:id="@+id/roommate_tvcity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"

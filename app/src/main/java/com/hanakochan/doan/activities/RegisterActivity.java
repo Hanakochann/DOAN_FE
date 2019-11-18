@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,9 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -22,14 +19,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.hanakochan.doan.R;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.hanakochan.doan.Config.ip_config;
+import static com.hanakochan.doan.models.Config.ip_config;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -44,14 +39,13 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        edt_Name = (EditText) findViewById(R.id.edt_name);
-        edt_Email = (EditText) findViewById(R.id.edt_email);
-        edt_Pass = (EditText) findViewById(R.id.edt_pass);
-        edt_ConfirmPass = (EditText) findViewById(R.id.edt_confirm_pass);
-        btnRegister = (Button) findViewById(R.id.btn_register);
-        progressBar = (ProgressBar) findViewById(R.id.progressbar_id);
+        edt_Name = findViewById(R.id.edt_name);
+        edt_Email =  findViewById(R.id.edt_email);
+        edt_Pass = findViewById(R.id.edt_pass);
+        edt_ConfirmPass = findViewById(R.id.edt_confirm_pass);
+        btnRegister = findViewById(R.id.btn_register);
+        progressBar = findViewById(R.id.progressbar_id);
         loadingBar = new ProgressDialog(this);
-
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +53,6 @@ public class RegisterActivity extends AppCompatActivity {
                 Register();
             }
         });
-
     }
 
     private void Register() {
@@ -128,5 +121,4 @@ public class RegisterActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-
 }

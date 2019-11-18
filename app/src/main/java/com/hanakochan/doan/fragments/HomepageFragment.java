@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-
 import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,43 +11,49 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.hanakochan.doan.AddRoomActivity;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.hanakochan.doan.activities.AddRoomActivity;
 import com.hanakochan.doan.R;
-import com.hanakochan.doan.SearchRoomActivity;
+import com.hanakochan.doan.models.RecyclerViewAdapter;
+import com.hanakochan.doan.models.Room;
+import com.hanakochan.doan.activities.SearchRoomActivity;
+import com.hanakochan.doan.models.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
-import static com.hanakochan.doan.Config.ip_config;
+import static com.hanakochan.doan.models.Config.ip_config;
 
 public class HomepageFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     Toolbar toolbar;
     private static String URL_READ = ip_config+"/load_room.php";
-    String[] title;
-    String[] price;
-    String[] address;
-    String[] imgPath;
-    ListView listView;
-    BufferedInputStream bufferedInputStream;
-    String line = null;
-    String result = null;
-
-
-
+    private static final String TAG = HomepageFragment.class.getSimpleName();
+    SessionManager sessionManager;
+    String getId;
+    ProgressBar progressBar;
+    RecyclerView recyclerView;
+    private JsonArrayRequest request;
+    private RequestQueue requestQueue;
+    private List<Room> lstRoom = new ArrayList<>();;
     public HomepageFragment() {
         // Required empty public constructor
     }
@@ -60,15 +64,66 @@ public class HomepageFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_homepage, container, false);
 
+        sessionManager = new SessionManager(getActivity());
+        sessionManager.checkLogin();
+
+        HashMap<String, String> user = sessionManager.getUserDetail();
+        getId = user.get(sessionManager.ID);
+
+        lstRoom = new ArrayList<>();
+
         toolbar = view.findViewById(R.id.toolbar_home_id);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         toolbar.setTitle("Home");
         setHasOptionsMenu(true);
 
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
-        listView = view.findViewById(R.id.lview);
-//        collectData();
+        recyclerView = view.findViewById(R.id.recyclerView);
+        collectData();
+
+
         return view;
+    }
+    private void collectData()
+    {
+        request = new JsonArrayRequest(URL_READ, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i = 0; i < response.length(); i++){
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        Room room = new Room();
+                        room.setType(jsonObject.getString("type_room"));
+                        room.setPrice(jsonObject.getString("price"));
+                        room.setImage(jsonObject.getString("img_room"));
+                        room.setCity(jsonObject.getString("city_name"));
+                        room.setDistrict(jsonObject.getString("district_name"));
+                        room.setStreet(jsonObject.getString("street_name"));
+                        room.setNumber(jsonObject.getString("number"));
+                        lstRoom.add(room);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+                setupRecyclerView(lstRoom);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        requestQueue = Volley.newRequestQueue(getActivity());
+        requestQueue.add(request);
+
+    }
+
+    private void setupRecyclerView(List<Room> lstRoom) {
+        RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getActivity(), lstRoom);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(myAdapter);
+
     }
 
     @Override
@@ -105,66 +160,12 @@ public class HomepageFragment extends Fragment {
         startActivity(intent);
     }
 
-
-//    private void collectData(){
-////connection
-//        try {
-//            URL url = new URL(URL_READ);
-//            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-//            conn.setRequestMethod("GET");
-//            bufferedInputStream = new BufferedInputStream(conn.getInputStream());
-//
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        //content
-//        try {
-//
-//            BufferedReader br = new BufferedReader(new InputStreamReader(bufferedInputStream));
-//            StringBuilder sb = new StringBuilder();
-//            while ((line = br.readLine()) != null){
-//                sb.append(line+"\n");
-//
-//            }
-//            bufferedInputStream.close();
-//            result = sb.toString();
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        //JSON
-//        try {
-//
-//            JSONArray jsonArray = new JSONArray(result);
-//            JSONObject object = null;
-//            title = new String[jsonArray.length()];
-//            price = new String[jsonArray.length()];
-//            address = new String[jsonArray.length()];
-//            imgPath = new String[jsonArray.length()];
-//            for (int i = 0; i <= jsonArray.length(); i++){
-//                object = jsonArray.getJSONObject(i);
-//                title[i] = object.getString("type_room");
-//                price[i] = object.getString("price");
-//                address[i] = object.getString("address");
-//                imgPath[i] = object.getString("photo");
-//
-//            }
-//
-//
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//
-//    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -172,13 +173,11 @@ public class HomepageFragment extends Fragment {
             mListener = (OnFragmentInteractionListener) context;
         }
     }
-
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
-
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name

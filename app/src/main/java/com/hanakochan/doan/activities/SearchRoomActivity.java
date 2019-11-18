@@ -1,8 +1,10 @@
-package com.hanakochan.doan;
+package com.hanakochan.doan.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.hanakochan.doan.R;
 
 public class SearchRoomActivity extends AppCompatActivity {
 

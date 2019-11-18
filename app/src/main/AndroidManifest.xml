@@ -15,8 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AddRoomActivity"></activity>
-        <activity android:name=".SearchRoomActivity" />
+        <activity android:name=".activities.DetailRoommateActivity"></activity>
+        <activity android:name=".activities.DetailRoomActivity" />
+        <activity android:name=".activities.AddRoommateActivity" />
+        <activity android:name=".activities.AddRoomActivity" />
+        <activity android:name=".activities.SearchRoomActivity" />
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/title_activity_main" />

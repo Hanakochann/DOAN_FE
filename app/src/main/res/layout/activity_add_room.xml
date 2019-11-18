@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddRoomActivity">
+    tools:context=".activities.AddRoomActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
     <include layout="@layout/toolbar_add_room"></include>
 
@@ -115,18 +119,34 @@
             android:layout_width="380dp"
             android:layout_height="50dp"
             android:hint="Something special..."/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
+        <ImageView
+            android:id="@+id/img_upload"
+            android:src="@drawable/upload"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"/>
         <Button
-            android:id="@+id/id_button"
-            android:layout_width="380dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="800dp"
-            android:text="POST"
-            android:background="@drawable/radius"/>
+            android:id="@+id/btn_Select_Roomphoto"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:textColor="@color/text"
+            android:background="@drawable/radius"
+            android:text="@string/button_select_photo" />
     </LinearLayout>
-</RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/id_button"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="990dp"
+                android:background="@drawable/radius"
+                android:text="POST" />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

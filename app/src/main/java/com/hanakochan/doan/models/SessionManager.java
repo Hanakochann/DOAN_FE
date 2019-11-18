@@ -1,9 +1,8 @@
-package com.hanakochan.doan;
+package com.hanakochan.doan.models;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-
 import com.hanakochan.doan.activities.LoginActivity;
 import com.hanakochan.doan.activities.MainActivity;
 
@@ -60,6 +59,11 @@ public class SessionManager {
         user.put(PHONE, sharedPreferences.getString(PHONE, null));
         user.put(ID, sharedPreferences.getString(ID, null));
 
+        return user;
+    }
+    public HashMap<String, String> getUserId() {
+        HashMap<String, String> user = new HashMap<>();
+        user.put(ID, sharedPreferences.getString(ID, null));
         return user;
     }
     public void logout(){

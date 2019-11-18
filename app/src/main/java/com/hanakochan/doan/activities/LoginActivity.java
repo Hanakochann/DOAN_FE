@@ -1,12 +1,9 @@
 package com.hanakochan.doan.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.media.session.MediaSessionManager;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,18 +19,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.hanakochan.doan.R;
-import com.hanakochan.doan.SessionManager;
-import com.hanakochan.doan.fragments.ProfileFragment;
-
+import com.hanakochan.doan.models.SessionManager;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.hanakochan.doan.Config.ip_config;
-
+import static com.hanakochan.doan.models.Config.ip_config;
 
 public class LoginActivity extends AppCompatActivity {
     public EditText edt_email;
@@ -50,20 +42,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-//        if (android.os.Build.VERSION.SDK_INT > 9)
-//        {
-//            StrictMode.ThreadPolicy policy = new
-//                    StrictMode.ThreadPolicy.Builder().permitAll().build();
-//            StrictMode.setThreadPolicy(policy);
-//        }
         sessionManager = new SessionManager(this);
 
-        edt_email = (EditText) findViewById(R.id.edt_username);
+        edt_email = findViewById(R.id.edt_username);
         edt_email.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
-        edt_password = (EditText) findViewById(R.id.edt_password);
-//        edt_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
-        buttonLog = (Button) findViewById(R.id.btnLogin);
-        buttonCreate = (Button) findViewById(R.id.btnCreate);
+        edt_password = findViewById(R.id.edt_password);
+        buttonLog = findViewById(R.id.btnLogin);
+        buttonCreate = findViewById(R.id.btnCreate);
         progressDialog = new ProgressDialog(this);
 
         buttonLog.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +101,6 @@ public class LoginActivity extends AppCompatActivity {
                                     intent.putExtra("email",email);
                                     startActivity(intent);
                                 }
-
                                 Toast.makeText(LoginActivity.this, "Login Success!", Toast.LENGTH_SHORT).show();
                             }else{
                                 Toast.makeText(LoginActivity.this, "Login Error!", Toast.LENGTH_SHORT).show();

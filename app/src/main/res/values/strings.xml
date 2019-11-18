@@ -1,4 +1,19 @@
 <resources>
+    <string name="logo">POTO</string>
+    <string name="logo_image">This is logo of application</string>
+    <string name="title_signin">SIGN IN</string>
+    <string name="autofillhint_email">email</string>
+    <string name="autofillhint_password">password</string>
+    <string name="button_Signin">SIGN IN</string>
+    <string name="link_forgot_password">Forgot your password?</string>
+    <string name="or">Or</string>
+    <string name="create_account">Create New Account</string>
+    <string name="hint_Email">Enter Email</string>
+    <string name="hint_Password">Enter Password</string>
+    <string name="title_signup">SIGN UP</string>
+    <string name="button_Signup">SIGN IN</string>
+    <string name="button_Message">MESSAGE</string>
+
     <string name="title_activity_after_login">AfterLoginActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -14,7 +29,7 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="linktoforgot">
-        <a href="https://wwww.google.com">Forgot your password?</a>
+        <a href="https://www.facebook.com/shinigami.tran.7">Forgot your password?</a>
     </string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Roommate</string>

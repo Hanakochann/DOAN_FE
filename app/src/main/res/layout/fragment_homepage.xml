@@ -8,10 +8,12 @@
     <include
         layout="@layout/toolbar_home">
     </include>
-    <ListView
-        android:id="@+id/lview"
-        android:layout_marginTop="50dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 </RelativeLayout>
+

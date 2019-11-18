@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#00BC53</color>
+    <color name="text">#ffffff</color>
+    <color name="button">#009940</color>
+    <color name="bar">#009940</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#00574B</color>
     <color name="background">#ffffff</color>
     <color name="colorstart">#12751e</color>
     <color name="toolbar">#70009D</color>
-    <color name="colorlink">#0A0A0A</color>
     <color name="borderColor">#12751e</color>
     <color name="tab_textcolor">#fff</color>
     <color name="tab_indicator">#2d2d2d</color>

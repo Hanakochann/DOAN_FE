@@ -14,12 +14,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.hanakochan.doan.R;
+import com.hanakochan.doan.models.SessionManager;
+
+import java.util.HashMap;
 
 public class MessageFragment extends Fragment {
     Toolbar toolbar;
+    SessionManager sessionManager;
+    String getId;
     private OnFragmentInteractionListener mListener;
 
     public MessageFragment() {
@@ -32,6 +36,12 @@ public class MessageFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_message, container, false);
+
+        sessionManager = new SessionManager(getActivity());
+        sessionManager.checkLogin();
+
+        HashMap<String, String> user = sessionManager.getUserDetail();
+        getId = user.get(sessionManager.ID);
 
         toolbar = view.findViewById(R.id.toolbar_message_id);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
