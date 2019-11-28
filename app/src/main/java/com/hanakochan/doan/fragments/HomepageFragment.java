@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -38,6 +39,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.hanakochan.doan.models.Config.ip_config;
 
@@ -53,7 +55,7 @@ public class HomepageFragment extends Fragment {
     RecyclerView recyclerView;
     private JsonArrayRequest request;
     private RequestQueue requestQueue;
-    private List<Room> lstRoom = new ArrayList<>();;
+    private List<Room> lstRoom = new ArrayList<>();
     public HomepageFragment() {
         // Required empty public constructor
     }
@@ -74,13 +76,12 @@ public class HomepageFragment extends Fragment {
 
         toolbar = view.findViewById(R.id.toolbar_home_id);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        toolbar.setTitle("Home");
+        toolbar.setTitle("ROOM");
         setHasOptionsMenu(true);
 
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
         recyclerView = view.findViewById(R.id.recyclerView);
         collectData();
-
 
         return view;
     }
@@ -94,13 +95,17 @@ public class HomepageFragment extends Fragment {
                     try {
                         jsonObject = response.getJSONObject(i);
                         Room room = new Room();
+                        room.setUsername(jsonObject.getString("username"));
                         room.setType(jsonObject.getString("type_room"));
                         room.setPrice(jsonObject.getString("price"));
+                        room.setSlot_available(jsonObject.getString("slot_available"));
+                        room.setOther(jsonObject.getString("other"));
                         room.setImage(jsonObject.getString("img_room"));
                         room.setCity(jsonObject.getString("city_name"));
                         room.setDistrict(jsonObject.getString("district_name"));
                         room.setStreet(jsonObject.getString("street_name"));
                         room.setNumber(jsonObject.getString("number"));
+                        room.setTime(jsonObject.getString("time_post"));
                         lstRoom.add(room);
                     }catch (Exception e){
                         e.printStackTrace();
@@ -113,7 +118,14 @@ public class HomepageFragment extends Fragment {
             public void onErrorResponse(VolleyError error) {
 
             }
-        });
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String>params = new HashMap<>();
+                params.put("id", getId);
+                return params;
+            }
+        };
         requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(request);
 
@@ -134,12 +146,8 @@ public class HomepageFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_search_home) {
             startSearchRoom();
             return true;

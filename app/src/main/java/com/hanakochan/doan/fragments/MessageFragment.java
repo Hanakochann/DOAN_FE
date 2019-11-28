@@ -45,7 +45,7 @@ public class MessageFragment extends Fragment {
 
         toolbar = view.findViewById(R.id.toolbar_message_id);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        toolbar.setTitle("Message");
+        toolbar.setTitle("MESSAGE");
         setHasOptionsMenu(true);
         return view;
     }

@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.AddRoomActivity">
+    tools:context=".activities.AddRoomActivity"
+    android:id="@+id/container.addroom">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -23,102 +24,102 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
-            android:text="City/Province:"
+            android:text="Tỉnh/Thành phố:"
             android:textSize="20dp"
             android:textColor="@color/black"/>
         <Spinner
             android:id="@+id/id_city"
             android:layout_width="380dp"
             android:layout_height="50dp"
-            android:hint="Select City/Province"
+            android:hint="Chọn Tỉnh/Thành phố"
             android:textSize="20dp" />
         <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="District:"
+        android:text="Quận/Huyện:"
         android:textSize="20dp"
         android:textColor="@color/black"/>
         <Spinner
             android:id="@+id/id_district"
             android:layout_width="380dp"
             android:layout_height="50dp"
-            android:hint="Select District"
+            android:hint="Chọn Quận/Huyện"
             android:textSize="20dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Street:"
+            android:text="Đường:"
             android:textSize="20dp"
             android:textColor="@color/black"/>
-        <Spinner
+        <EditText
             android:id="@+id/id_street"
             android:layout_width="380dp"
             android:layout_height="50dp"
-            android:hint="Street"
-            android:textSize="20dp" />
+            android:hint="Nhập tên "/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Number:"
+            android:text="Số:"
             android:textSize="20dp"
             android:textColor="@color/black"/>
         <EditText
             android:id="@+id/id_number"
             android:layout_width="380dp"
             android:layout_height="50dp"
-            android:hint="Enter number"/>
+            android:hint="Nhập số"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Type room:"
+            android:text="Loại phòng:"
             android:textSize="20dp"
             android:textColor="@color/black"/>
         <Spinner
             android:id="@+id/id_room_type"
             android:layout_width="380dp"
             android:layout_height="50dp"
-            android:hint="Select Type Room"
+            android:hint="Chọn loại phòng"
             android:textSize="20dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Slot available:"
+            android:text="Chỗ trống:"
             android:textSize="20dp"
             android:textColor="@color/black"/>
         <EditText
             android:id="@+id/id_slot"
             android:layout_width="380dp"
             android:layout_height="50dp"
-            android:hint="Enter slot number"/>
+            android:hint="Enter số chỗ trống"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Price:"
+            android:text="Giá:"
             android:textSize="20dp"
             android:textColor="@color/black"/>
         <EditText
             android:id="@+id/id_price"
             android:layout_width="380dp"
             android:layout_height="50dp"
-            android:hint="Enter price"/>
+            android:hint="Nhập giá"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Other:"
+            android:text="Thông tin thêm/Yêu cầu:"
             android:textSize="20dp"
             android:textColor="@color/black"/>
+
         <EditText
             android:id="@+id/id_other"
             android:layout_width="380dp"
             android:layout_height="50dp"
-            android:hint="Something special..."/>
+            android:hint="Nhà vệ sinh, chỗ để xe, chung chủ hay không..." />
         <ImageView
             android:id="@+id/img_upload"
             android:src="@drawable/upload"

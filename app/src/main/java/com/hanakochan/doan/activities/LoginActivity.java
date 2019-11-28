@@ -2,14 +2,21 @@ package com.hanakochan.doan.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -28,25 +35,51 @@ import java.util.Map;
 
 import static com.hanakochan.doan.models.Config.ip_config;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements TextWatcher, CompoundButton.OnCheckedChangeListener {
     public EditText edt_email;
     public EditText edt_password;
     public Button buttonLog, buttonCreate;
     private ProgressDialog progressDialog;
     private ProgressBar progressBar;
+    private TextView link;
     String URL_LOGIN = ip_config+"/user_login.php";
     SessionManager sessionManager;
+
+    private CheckBox rem_userpass;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    private static final String PREF_NAME = "prefs";
+    private static final String KEY_REMEMBER = "remember";
+    private static final String KEY_USERNAME = "username";
+    private static final String KEY_PASS = "password";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
         sessionManager = new SessionManager(this);
 
         edt_email = findViewById(R.id.edt_username);
         edt_email.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         edt_password = findViewById(R.id.edt_password);
+
+        rem_userpass = (CheckBox)findViewById(R.id.checkBox);
+        if(sharedPreferences.getBoolean(KEY_REMEMBER, false))
+            rem_userpass.setChecked(true);
+        else
+            rem_userpass.setChecked(false);
+
+        edt_email.setText(sharedPreferences.getString(KEY_USERNAME,""));
+        edt_password.setText(sharedPreferences.getString(KEY_PASS,""));
+
+        edt_email.addTextChangedListener(this);
+        edt_password.addTextChangedListener(this);
+        rem_userpass.setOnCheckedChangeListener(this);
+
         buttonLog = findViewById(R.id.btnLogin);
         buttonCreate = findViewById(R.id.btnCreate);
         progressDialog = new ProgressDialog(this);
@@ -68,6 +101,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        link = findViewById(R.id.textView6);
+        link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, GetEmailActivity.class);
+                startActivity(intent);
+            }
+        });
+
         buttonCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,6 +118,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+
     private void Login(final String email, final String password){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOGIN,
                 new Response.Listener<String>() {
@@ -131,4 +175,39 @@ public class LoginActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        managePrefs();
+    }
+
+    private void managePrefs(){
+        if(rem_userpass.isChecked()){
+            editor.putString(KEY_USERNAME, edt_email.getText().toString().trim());
+            editor.putString(KEY_PASS, edt_password.getText().toString().trim());
+            editor.putBoolean(KEY_REMEMBER, true);
+            editor.apply();
+        }else{
+            editor.putBoolean(KEY_REMEMBER, false);
+            editor.remove(KEY_PASS);//editor.putString(KEY_PASS,"");
+            editor.remove(KEY_USERNAME);//editor.putString(KEY_USERNAME, "");
+            editor.apply();
+        }
+    }
+
 }

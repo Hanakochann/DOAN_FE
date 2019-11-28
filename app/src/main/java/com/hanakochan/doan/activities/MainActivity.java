@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hanakochan.doan.R;
+import com.hanakochan.doan.fragments.HistoryFragment;
 import com.hanakochan.doan.fragments.HomepageFragment;
 import com.hanakochan.doan.fragments.MessageFragment;
 import com.hanakochan.doan.fragments.ProfileFragment;
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_roommate:
                     transaction.replace(R.id.container,new RoommateFragment()).commit();
                     return true;
+                case R.id.navigation_history:
+                    transaction.replace(R.id.container,new HistoryFragment()).commit();
+                    return true;
                 case R.id.navigation_message:
                     transaction.replace(R.id.container,new MessageFragment()).commit();
                     return true;
@@ -61,14 +65,14 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Are you sure want to exit?")
-                .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setMessage("Bạn chắc chắc muốn thoát?")
+                .setCancelable(false).setPositiveButton("Có", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 MainActivity.super.onBackPressed();
             }
         })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Không", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();

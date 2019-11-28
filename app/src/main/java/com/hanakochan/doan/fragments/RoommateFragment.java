@@ -74,7 +74,7 @@ public class RoommateFragment extends Fragment {
 
         toolbar = view.findViewById(R.id.toolbar_roommate_id);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        toolbar.setTitle("Roommate");
+        toolbar.setTitle("ROOMMATE");
         setHasOptionsMenu(true);
 
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
@@ -94,6 +94,8 @@ public class RoommateFragment extends Fragment {
                     try {
                         jsonObject = response.getJSONObject(i);
                         Room room = new Room();
+                        room.setId_post(jsonObject.getString("id"));
+                        room.setId_user(jsonObject.getString("id_user"));
                         room.setUsername(jsonObject.getString("username"));
                         room.setPrice(jsonObject.getString("price"));
                         room.setImage(jsonObject.getString("img_user"));
@@ -101,6 +103,7 @@ public class RoommateFragment extends Fragment {
                         room.setDistrict(jsonObject.getString("district_name"));
                         room.setStreet(jsonObject.getString("street_name"));
                         room.setGender(jsonObject.getString("gender"));
+                        room.setTime(jsonObject.getString("time_post"));
                         lstRoom.add(room);
                     }catch (Exception e){
                         e.printStackTrace();

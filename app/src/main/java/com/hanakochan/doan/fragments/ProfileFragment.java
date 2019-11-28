@@ -103,7 +103,7 @@ public class ProfileFragment extends Fragment {
             , "Ninh Thuận", "Phú Thọ","Phú Yên","Quảng Bình", "Quảng Nam", "Quảng Ngãi", "Quảng Ninh", "Quảng Trị"
             , "Sóc Trăng", "Sơn La","Tây Ninh","Thái Bình", "Thái Nguyên", "Thanh Hóa", "TP Hồ Chí Minh"
             , "Thừa Thiên Huế","Tiền Giang", "Trà Vinh","Tuyên Quang", "Vĩnh Long", "Vĩnh Phúc", "Yên Bái", };
-    String [] SpinnerListGender = {"", "Male","Female","Other"};
+    String [] SpinnerListGender = {"", "Nam","Nữ","Khác"};
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -228,7 +228,7 @@ public class ProfileFragment extends Fragment {
                                     String strPhone = object.getString("phone").trim();
                                     String strPhoto = object.getString("photo").trim();
 
-
+                                    sessionManager.createSessionImageUser(strPhoto);
 
                                     tvName.setText(strName);
                                     tvEmail.setText(strEmail);
@@ -261,7 +261,7 @@ public class ProfileFragment extends Fragment {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             progressDialog.dismiss();
-                            Toast.makeText(getActivity(), "Error reading detail!" + e.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Không thể hiển thị chi tiết!" + e.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
@@ -296,19 +296,19 @@ public class ProfileFragment extends Fragment {
         final String phone = edtPhone.getText().toString().trim();
 
         if (TextUtils.isEmpty(birthday)) {
-            Toast.makeText(getActivity(), "Please select your birthday", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Vui lòng nhập ngày sinh", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(hometown)) {
-            Toast.makeText(getActivity(), "Please select your hometown", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Vui lòng nhập quê quán", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(gender)) {
-            Toast.makeText(getActivity(), "Please select your gender", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Vui lòng nhập giới tính", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(phone)) {
-            Toast.makeText(getActivity(), "Please enter your phone number", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Vui lòng nhập số điện thoại", Toast.LENGTH_SHORT).show();
             return;
         }
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_UPDATE,
@@ -319,11 +319,11 @@ public class ProfileFragment extends Fragment {
                             JSONObject jsonObject = new JSONObject(response);
                             String success_text = jsonObject.getString("success");
                             if (success_text.equals("1")) {
-                                Toast.makeText(getActivity(), "Update Success!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Cập nhật thành công!", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(getActivity(), "Update Error!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Cập nhật không thành công!", Toast.LENGTH_SHORT).show();
                             }
                         }
                     },
@@ -387,12 +387,12 @@ public class ProfileFragment extends Fragment {
                         JSONObject jsonObject = new JSONObject(response);
                         String success = jsonObject.getString("success");
                         if (success.equals("1")){
-                            Toast.makeText(getActivity(), "Success!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Thành công!", Toast.LENGTH_SHORT).show();
                         }
                     }catch (JSONException e){
                         e.printStackTrace();
                         progressDialog.dismiss();
-                        Toast.makeText(getActivity(), "Try Again!"+ e.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Không thành công!"+ e.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
@@ -400,7 +400,7 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         progressDialog.dismiss();
-                        Toast.makeText(getActivity(), "Try Again!"+ error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Thử lại!"+ error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 })
         {

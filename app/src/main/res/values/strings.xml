@@ -1,18 +1,23 @@
 <resources>
+    <string name="app_name">Poto</string>
     <string name="logo">POTO</string>
     <string name="logo_image">This is logo of application</string>
-    <string name="title_signin">SIGN IN</string>
+    <string name="title_signin">ĐĂNG NHẬP</string>
     <string name="autofillhint_email">email</string>
     <string name="autofillhint_password">password</string>
-    <string name="button_Signin">SIGN IN</string>
-    <string name="link_forgot_password">Forgot your password?</string>
-    <string name="or">Or</string>
-    <string name="create_account">Create New Account</string>
-    <string name="hint_Email">Enter Email</string>
-    <string name="hint_Password">Enter Password</string>
-    <string name="title_signup">SIGN UP</string>
-    <string name="button_Signup">SIGN IN</string>
-    <string name="button_Message">MESSAGE</string>
+    <string name="button_Signin">ĐĂNG NHẬP</string>
+    <string name="link_forgot_password">Quên mật khẩu?</string>
+    <string name="or">Hoặc</string>
+    <string name="create_account">TẠO TÀI KHOẢN</string>
+    <string name="hint_Email">Nhập Email</string>
+    <string name="hint_Password">Nhập mật khẩu</string>
+    <string name="title_signup">ĐĂNG KÝ</string>
+    <string name="button_Signup">ĐĂNG KÝ</string>
+    <string name="button_Message">LIÊN HỆ</string>
+    <string name="button_delete">XÓA</string>
+    <string name="title_forgotpass">QUÊN MẬT KHẨU</string>
+    <string name="button_confirmpass">TẠO MẬT KHẨU</string>
+    <string name="confirmEmail">XÁC NHẬN</string>
 
     <string name="title_activity_after_login">AfterLoginActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -38,7 +43,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="button_select_photo">Select Photo</string>
+    <string name="button_select_photo">Chọn ảnh</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_notifications">Notifications</string>
 </resources>

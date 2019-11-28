@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#00BC53</color>
     <color name="text">#ffffff</color>
+    <color name="delete_button">#CF2A2A</color>
     <color name="button">#009940</color>
     <color name="bar">#009940</color>
     <color name="colorPrimaryDark">#00574B</color>

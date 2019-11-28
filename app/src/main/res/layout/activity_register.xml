@@ -75,7 +75,7 @@
                 android:hint="Name"
                 android:textColor="@color/text"
                 android:layout_marginTop="@dimen/text_marginTop"
-                android:inputType="textNoSuggestions"
+                android:inputType="text"
                 tools:layout_editor_absoluteX="136dp"
                 tools:layout_editor_absoluteY="570dp" />
             <EditText

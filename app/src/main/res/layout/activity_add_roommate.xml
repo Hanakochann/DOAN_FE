@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="70dp"
-                android:text="City/Province:"
+                android:text="Tỉnh/Thành phố:"
                 android:textSize="20dp"
                 android:textColor="@color/black"/>
             <Spinner
@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="District:"
+                android:text="Quận/Huyện:"
                 android:textSize="20dp"
                 android:textColor="@color/black"/>
             <Spinner
@@ -48,39 +48,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Street:"
+                android:text="Đường:"
                 android:textSize="20dp"
                 android:textColor="@color/black"/>
-            <Spinner
+            <EditText
                 android:id="@+id/id_street"
                 android:layout_width="380dp"
                 android:layout_height="50dp"
-                android:hint="Street"
-                android:textSize="20dp" />
+                android:hint="Nhập tên đường:"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Price:"
+                android:text="Giá:"
                 android:textSize="20dp"
                 android:textColor="@color/black"/>
             <EditText
                 android:id="@+id/id_price"
                 android:layout_width="380dp"
                 android:layout_height="50dp"
-                android:hint="Enter price"/>
+                android:hint="Nhập giá"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Gender"
+                android:text="Giới tính"
                 android:textSize="20dp"
                 android:textColor="@color/black"/>
             <Spinner
                 android:id="@+id/id_gender"
                 android:layout_width="380dp"
                 android:layout_height="50dp"
-                android:hint="Street"
+                android:hint="Gender"
                 android:textSize="20dp" />
         </LinearLayout>
         <LinearLayout
@@ -94,7 +93,7 @@
                 android:layout_width="380dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="500dp"
-                android:text="POST"
+                android:text="ĐĂNG"
                 android:background="@drawable/radius"/>
         </LinearLayout>
     </RelativeLayout>

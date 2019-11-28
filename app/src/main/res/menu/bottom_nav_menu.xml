@@ -10,6 +10,10 @@
         android:icon="@drawable/ic_people_black_24dp"
         android:title="@string/title_dashboard" />
     <item
+        android:id="@+id/navigation_history"
+        android:icon="@drawable/ic_assignment_black_24dp"
+        android:title="History" />
+    <item
         android:id="@+id/navigation_message"
         android:icon="@drawable/ic_message_black_24dp"
         android:title="Message" />

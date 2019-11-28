@@ -45,12 +45,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mcontext, DetailRoomActivity.class);
+                intent.putExtra("detail_username", mData.get(myViewHolder.getAdapterPosition()).getUsername());
                 intent.putExtra("detail_type_room", mData.get(myViewHolder.getAdapterPosition()).getType());
                 intent.putExtra("detail_price", mData.get(myViewHolder.getAdapterPosition()).getPrice());
+                intent.putExtra("detail_slot_available", mData.get(myViewHolder.getAdapterPosition()).getSlot_available());
+                intent.putExtra("detail_other", mData.get(myViewHolder.getAdapterPosition()).getOther());
                 intent.putExtra("detail_city_name", mData.get(myViewHolder.getAdapterPosition()).getCity());
                 intent.putExtra("detail_district_name", mData.get(myViewHolder.getAdapterPosition()).getDistrict());
                 intent.putExtra("detail_street_name", mData.get(myViewHolder.getAdapterPosition()).getStreet());
                 intent.putExtra("detail_number", mData.get(myViewHolder.getAdapterPosition()).getNumber());
+                intent.putExtra("detail_time", mData.get(myViewHolder.getAdapterPosition()).getTime());
                 intent.putExtra("detail_img_room", mData.get(myViewHolder.getAdapterPosition()).getImage());
                 mcontext.startActivity(intent);
             }
@@ -64,11 +68,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.tv_type.setText(mData.get(position).getType());
         holder.tv_price.setText(mData.get(position).getPrice());
-        holder.tv_city.setText(mData.get(position).getCity());
-        holder.tv_district.setText(mData.get(position).getDistrict());
-        holder.tv_street.setText(mData.get(position).getStreet());
-        holder.tv_number.setText(mData.get(position).getNumber());
-
+        holder.tv_address.setText("Địa chỉ: "+mData.get(position).getNumber()+", "+mData.get(position).getStreet()+", "+mData.get(position).getDistrict()+", "+mData.get(position).getCity());
+        holder.tv_time.setText(mData.get(position).getTime());
         Glide.with(mcontext).load(mData.get(position).getImage()).apply(options).into(holder.imageView);
 
 
@@ -84,10 +85,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         TextView tv_price;
         TextView tv_type;
-        TextView tv_city;
-        TextView tv_district;
-        TextView tv_street;
-        TextView tv_number;
+        TextView tv_address;
+        TextView tv_time;
         ImageView imageView;
         LinearLayout view_container;
 
@@ -98,10 +97,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             view_container = itemView.findViewById(R.id.aa_container);
             tv_type = itemView.findViewById(R.id.tvTitle);
             tv_price = itemView.findViewById(R.id.tvPrice);
-            tv_city = itemView.findViewById(R.id.tvcity);
-            tv_district = itemView.findViewById(R.id.tvdistrict);
-            tv_street = itemView.findViewById(R.id.tvstreet);
-            tv_number = itemView.findViewById(R.id.tvnumber);
+            tv_address = itemView.findViewById(R.id.tvAddress);
+            tv_time = itemView.findViewById(R.id.tvTime);
             imageView = itemView.findViewById(R.id.imgView);
 
 
