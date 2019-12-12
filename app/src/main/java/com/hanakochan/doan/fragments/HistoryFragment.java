@@ -53,17 +53,9 @@ import static com.android.volley.VolleyLog.v;
 import static com.hanakochan.doan.models.Config.ip_config;
 
 public class HistoryFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private static String URL_READ = ip_config+"/load_history.php";
-    private static String URL_DELETE = ip_config+"/delete_history.php";
+    private static String URL_READ = ip_config + "/load_history.php";
+    private static String URL_DELETE = ip_config + "/delete_history.php";
     Toolbar toolbar;
     SessionManager sessionManager;
     String getId, getUsername;
@@ -95,9 +87,8 @@ public class HistoryFragment extends Fragment {
         getId = user.get(sessionManager.ID);
 //        getUsername = user.get(sessionManager.NAME);
 
-        btn_delete = view.findViewById(R.id.btn_delete);
         toolbar = view.findViewById(R.id.toolbar_history_id);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         toolbar.setTitle("HISTORY");
         setHasOptionsMenu(true);
 
@@ -106,18 +97,16 @@ public class HistoryFragment extends Fragment {
         return view;
 
     }
-//
 
-    private void collectDataHistory()
-    {
-        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, URL_READ+"/?"+"id_user="+getId, null, new Response.Listener<JSONArray>() {
+    private void collectDataHistory() {
+        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, URL_READ + "?id_user=" + getId, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 JSONObject jsonObject = null;
-                if(response == null) {
+                if (response == null) {
                     String text = "Bạn chưa đăng bài nào";
                     tv_empty.setText(text);
-                }else{
+                } else {
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             jsonObject = response.getJSONObject(i);
@@ -126,13 +115,17 @@ public class HistoryFragment extends Fragment {
                             room.setUsername(jsonObject.getString("username"));
                             room.setType(jsonObject.getString("type_room"));
                             room.setPrice(jsonObject.getString("price"));
+                            room.setLenght(jsonObject.getString("lenght"));
+                            room.setWidth(jsonObject.getString("width"));
                             room.setSlot_available(jsonObject.getString("slot_available"));
                             room.setOther(jsonObject.getString("other"));
                             room.setImage(jsonObject.getString("img_room"));
                             room.setCity(jsonObject.getString("city_name"));
                             room.setDistrict(jsonObject.getString("district_name"));
+                            room.setWard(jsonObject.getString("ward_name"));
                             room.setStreet(jsonObject.getString("street_name"));
                             room.setNumber(jsonObject.getString("number"));
+                            room.setTime(jsonObject.getString("time_post"));
                             lstRoom.add(room);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -146,11 +139,18 @@ public class HistoryFragment extends Fragment {
             public void onErrorResponse(VolleyError error) {
 
             }
-        });
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                return params;
+            }
+        };
         requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(jsonArrayRequest);
 
     }
+
     private void setupRecyclerViewHistory(List<Room> lstRoom) {
         recyclerView = getActivity().findViewById(R.id.recyclerView_history);
         RecyclerViewAdapter_History myAdapter = new RecyclerViewAdapter_History(getActivity(), lstRoom);
@@ -176,30 +176,31 @@ public class HistoryFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
-    private void DeleteIcon(){
+
+    private void DeleteIcon() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage("Bạn chắc chắn muốn xóa tất cả bài đăng?");
         DialogInterface.OnClickListener dOnClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                    switch (i){
-                        case DialogInterface.BUTTON_POSITIVE:
-                            DeleteAll();
-                            break;
-                        case DialogInterface.BUTTON_NEGATIVE:
-                            dialogInterface.cancel();
-                            break;
-                    }
+                switch (i) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        DeleteAll();
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        dialogInterface.cancel();
+                        break;
+                }
             }
         };
         builder.setPositiveButton("Có", dOnClickListener);
-        builder.setNegativeButton("Không",dOnClickListener);
+        builder.setNegativeButton("Không", dOnClickListener);
         AlertDialog dialog = builder.create();
         dialog.show();
     }
 
-    private void DeleteAll(){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DELETE+"/?"+"id_user="+getId, new Response.Listener<String>() {
+    private void DeleteAll() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DELETE + "/?" + "id_user=" + getId, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -222,6 +223,7 @@ public class HistoryFragment extends Fragment {
             }
         });
     }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

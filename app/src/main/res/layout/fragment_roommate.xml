@@ -6,15 +6,13 @@
     tools:context=".fragments.RoommateFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <include
-        layout="@layout/toolbar_roommate">
-    </include>
+    <include layout="@layout/toolbar_roommate"></include>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_Roommate"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="?attr/actionBarSize" />
 
 </RelativeLayout>

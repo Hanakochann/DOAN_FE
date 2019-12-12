@@ -33,7 +33,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     String getEmail;
     EditText edt_password, edt_confirm;
     Button btn_Forgot;
-    String URL_EDTPASS = ip_config+"/editpassword.php";
+    String URL_EDTPASS = ip_config + "/editpassword.php";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         });
 
     }
-    private void EditPassword(){
+
+    private void EditPassword() {
         final String password = edt_password.getText().toString().trim();
         final String confirm_password = edt_confirm.getText().toString().trim();
         if (TextUtils.isEmpty(password)) {
@@ -86,8 +88,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                                 Toast.makeText(ForgotPasswordActivity.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
                                 startActivity(intent);
-                            }
-                            else {
+                            } else {
                                 Toast.makeText(ForgotPasswordActivity.this, "Đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {

@@ -1,41 +1,61 @@
 package com.hanakochan.doan.models;
 
+import java.util.Date;
+
 public class Room {
     private String username;
     private String id_post;
     private String gender;
+    private String gender_roommate;
     private String price;
+    private String lenght;
+    private String width;
     private String type;
     private String slot_available;
     private String other;
     private String city;
     private String district;
+    private String ward;
     private String street;
     private String number;
     private String image;
     private String image_user;
     private String time;
     private String id_user;
-    public Room(){
+    private String phone;
+    private String hometown;
+    private String birthday;
+
+    public Room() {
 
     }
 
-    public Room(String price, String type, String slot_available, String other, String city, String district, String street, String number, String image, String image_user, String username, String gender, String id_post, String time, String id_user ) {
+    public Room(String price, String type, String lenght, String width, String slot_available, String other,
+                String city, String district, String ward, String street, String number, String image,
+                String image_user, String username, String gender, String gender_roommate, String id_post,
+                String time, String id_user, String phone, String hometown, String birthday) {
         this.price = price;
+        this.lenght = lenght;
+        this.width = width;
         this.type = type;
         this.city = city;
         this.city = slot_available;
         this.city = other;
         this.district = district;
+        this.ward = ward;
         this.street = street;
         this.number = number;
         this.image = image;
         this.image_user = image_user;
         this.username = username;
         this.gender = gender;
+        this.gender_roommate = gender_roommate;
         this.id_post = id_post;
         this.time = time;
         this.id_user = id_user;
+        this.hometown = hometown;
+        this.phone = phone;
+        this.birthday = birthday;
     }
 
     public String getUsername() {
@@ -44,6 +64,10 @@ public class Room {
 
     public String getGender() {
         return gender;
+    }
+
+    public String getGender_roommate() {
+        return gender_roommate;
     }
 
     public String getPrice() {
@@ -68,6 +92,10 @@ public class Room {
 
     public String getDistrict() {
         return district;
+    }
+
+    public String getWard() {
+        return ward;
     }
 
     public String getStreet() {
@@ -98,12 +126,36 @@ public class Room {
         return id_user;
     }
 
+    public String getLenght() {
+        return lenght;
+    }
+
+    public String getWidth() {
+        return width;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getHometown() {
+        return hometown;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public void setGender_roommate(String gender_roommate) {
+        this.gender_roommate = gender_roommate;
     }
 
     public void setPrice(String price) {
@@ -128,6 +180,10 @@ public class Room {
 
     public void setDistrict(String district) {
         this.district = district;
+    }
+
+    public void setWard(String ward) {
+        this.ward = ward;
     }
 
     public void setStreet(String street) {
@@ -157,4 +213,25 @@ public class Room {
     public void setId_user(String id_user) {
         this.id_user = id_user;
     }
+
+    public void setLenght(String lenght) {
+        this.lenght = lenght;
+    }
+
+    public void setWidth(String width) {
+        this.width = width;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setHometown(String hometown) {
+        this.hometown = hometown;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
 }
+

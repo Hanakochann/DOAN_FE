@@ -13,7 +13,9 @@
     <string name="hint_Password">Nhập mật khẩu</string>
     <string name="title_signup">ĐĂNG KÝ</string>
     <string name="button_Signup">ĐĂNG KÝ</string>
-    <string name="button_Message">LIÊN HỆ</string>
+    <string name="button_Message">NHẮN TIN</string>
+    <string name="button_Call">GỌI ĐIỆN</string>
+    <string name="button_View">THÔNG TIN CHỦ PHÒNG</string>
     <string name="button_delete">XÓA</string>
     <string name="title_forgotpass">QUÊN MẬT KHẨU</string>
     <string name="button_confirmpass">TẠO MẬT KHẨU</string>

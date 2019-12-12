@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,7 +35,8 @@ public class GetEmailActivity extends AppCompatActivity {
     EditText edt_email;
     Button btn_confirm;
     ProgressBar progressBar;
-    String URL_CHECK = ip_config+"/checkEmail.php";
+    String URL_CHECK = ip_config + "/checkEmail.php";
+    String checkEmail;
     SessionManager sessionManager;
 
     @Override
@@ -46,6 +49,38 @@ public class GetEmailActivity extends AppCompatActivity {
         edt_email = findViewById(R.id.edt_email);
         btn_confirm = findViewById(R.id.btn_confirm);
 
+        edt_email.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                isValidEmail(edt_email);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+            public void isValidEmail(EditText edt) {
+                if (edt.getText().toString() == null) {
+                    edt.setError("Invalid Email Address");
+                    checkEmail = null;
+                } else if (isEmailValid(edt.getText().toString()) == false) {
+                    edt.setError("Invalid Email Address");
+                    checkEmail = null;
+                } else {
+                    checkEmail = edt.getText().toString();
+                }
+            }
+            boolean isEmailValid(CharSequence email) {
+                return android.util.Patterns.EMAIL_ADDRESS.matcher(email)
+                        .matches();
+            }
+        });
+
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,6 +88,7 @@ public class GetEmailActivity extends AppCompatActivity {
             }
         });
     }
+
     private void CheckEmailExits() {
         final String email = edt_email.getText().toString().trim();
         if (TextUtils.isEmpty(email)) {
@@ -72,8 +108,7 @@ public class GetEmailActivity extends AppCompatActivity {
                                 sessionManager.createSessionEmail(email);
                                 Intent intent = new Intent(GetEmailActivity.this, ForgotPasswordActivity.class);
                                 startActivity(intent);
-                            }
-                            else {
+                            } else {
                                 Toast.makeText(GetEmailActivity.this, "Email này chưa được đăng ký!", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {

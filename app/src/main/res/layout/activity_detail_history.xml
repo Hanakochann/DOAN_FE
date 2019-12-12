@@ -1,41 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.DetailRoomActivity">
+    android:background="@color/background"
+    tools:context=".activities.DetailHistoryActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tv_title"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        app:layout_collapseMode="pin"
-        android:theme="@style/Theme.AppCompat.Light"
-        android:background="@color/colorPrimary">
-    </androidx.appcompat.widget.Toolbar>
+    <include layout="@layout/toolbar_detail_history"/>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        android:padding="16dp">
+        android:padding="16dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center">
+
                 <TextView
+                    android:id="@+id/detail_title"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/detail_title"
                     android:text="CHI TIẾT PHÒNG"
                     android:textColor="@color/black"
-                    android:textSize="20dp"/>
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -60,7 +57,7 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:text="Mã số: "
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
 
                     <TextView
                         android:id="@+id/detail_history_tvid"
@@ -71,8 +68,9 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:hint="title"
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -87,7 +85,7 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:text="Loại phòng: "
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
 
                     <TextView
                         android:id="@+id/detail_history_tvTitle"
@@ -98,7 +96,7 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:hint="title"
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -115,7 +113,7 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:text="Giá: "
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
 
                     <TextView
                         android:id="@+id/detail_history_tvPrice"
@@ -126,7 +124,7 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:hint="price"
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -136,7 +134,57 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:text=" VND"
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:text="Diện tích: "
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/detail_history_tvLenght"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_gravity="end"
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:text=" x "
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/detail_history_tvWidth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:text=" (Đơn vị mét)"
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -153,7 +201,7 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:text="Chỗ trống: "
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
 
                     <TextView
                         android:id="@+id/detail_history_tvSlot_available"
@@ -164,7 +212,7 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:hint="number"
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -181,7 +229,7 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:text="Số: "
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
 
                     <TextView
                         android:id="@+id/detail_history_tvnumber"
@@ -192,7 +240,7 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:hint="number"
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -209,7 +257,7 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:text="Đường: "
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
 
                     <TextView
                         android:id="@+id/detail_history_tvstreet"
@@ -220,7 +268,35 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:hint="street"
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:text="Phường/Xã: "
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/detail_history_tvward"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:hint="district"
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -237,7 +313,7 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:text="Quận/Huyện: "
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
 
                     <TextView
                         android:id="@+id/detail_history_tvdistrict"
@@ -248,7 +324,7 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:hint="district"
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -265,7 +341,7 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:text="Tỉnh/Thành phố: "
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
 
                     <TextView
                         android:id="@+id/detail_history_tvcity"
@@ -276,7 +352,7 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:hint="city"
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -293,7 +369,8 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:text="Thông tin thêm/Yêu cầu: "
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
+
                     <TextView
                         android:id="@+id/detail_history_tvOther"
                         android:layout_width="wrap_content"
@@ -303,7 +380,35 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:hint="other"
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:text="Ngày đăng: "
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/detail_history_tvtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:hint="time"
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
                 </LinearLayout>
 
                 <ImageView
@@ -317,21 +422,5 @@
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="600dp"
-        android:layout_gravity="center">
-        <Button
-            android:id="@+id/btn_Message_room"
-            android:layout_width="380dp"
-            android:layout_height="50dp"
-            android:text="@string/button_delete"
-            android:textColor="@color/text"
-            android:textSize="20sp"
-            android:background="@color/delete_button"
-            tools:layout_editor_absoluteX="185dp"
-            tools:layout_editor_absoluteY="640dp" />
-    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

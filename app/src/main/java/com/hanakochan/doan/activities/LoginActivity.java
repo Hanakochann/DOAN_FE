@@ -1,6 +1,8 @@
 package com.hanakochan.doan.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,11 +28,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.hanakochan.doan.R;
 import com.hanakochan.doan.models.SessionManager;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,9 +51,11 @@ public class LoginActivity extends AppCompatActivity implements TextWatcher, Com
     private ProgressDialog progressDialog;
     private ProgressBar progressBar;
     private TextView link;
-    String URL_LOGIN = ip_config+"/user_login.php";
+    String URL_LOGIN = ip_config + "/user_login.php";
+    String URL_CHECKEMAIL = ip_config + "/checkEmail.php";
+    String checkEmail;
     SessionManager sessionManager;
-
+    FirebaseAuth auth;
     private CheckBox rem_userpass;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -61,22 +72,53 @@ public class LoginActivity extends AppCompatActivity implements TextWatcher, Com
         sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
+        auth = FirebaseAuth.getInstance();
         sessionManager = new SessionManager(this);
 
         edt_email = findViewById(R.id.edt_username);
         edt_email.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         edt_password = findViewById(R.id.edt_password);
 
-        rem_userpass = (CheckBox)findViewById(R.id.checkBox);
-        if(sharedPreferences.getBoolean(KEY_REMEMBER, false))
+        rem_userpass = (CheckBox) findViewById(R.id.checkBox);
+        if (sharedPreferences.getBoolean(KEY_REMEMBER, false))
             rem_userpass.setChecked(true);
         else
             rem_userpass.setChecked(false);
 
-        edt_email.setText(sharedPreferences.getString(KEY_USERNAME,""));
-        edt_password.setText(sharedPreferences.getString(KEY_PASS,""));
+        edt_email.setText(sharedPreferences.getString(KEY_USERNAME, ""));
+        edt_password.setText(sharedPreferences.getString(KEY_PASS, ""));
 
-        edt_email.addTextChangedListener(this);
+        edt_email.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                isValidEmail(edt_email);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+
+            public void isValidEmail(EditText edt) {
+                if (edt.getText().toString() == null) {
+                    edt.setError("Invalid Email Address");
+                    checkEmail = null;
+                } else if (isEmailValid(edt.getText().toString()) == false) {
+                    edt.setError("Invalid Email Address");
+                    checkEmail = null;
+                } else {
+                    checkEmail = edt.getText().toString();
+                }
+            }
+            boolean isEmailValid(CharSequence email) {
+                return android.util.Patterns.EMAIL_ADDRESS.matcher(email)
+                        .matches();
+            }
+        });
         edt_password.addTextChangedListener(this);
         rem_userpass.setOnCheckedChangeListener(this);
 
@@ -87,17 +129,7 @@ public class LoginActivity extends AppCompatActivity implements TextWatcher, Com
         buttonLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String email = edt_email.getText().toString().trim();
-                final String password = edt_password.getText().toString().trim();
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(LoginActivity.this, "Please enter your email", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(LoginActivity.this, "Please enter your password", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Login(email, password);
+                CheckEmailExits();
             }
         });
 
@@ -113,25 +145,79 @@ public class LoginActivity extends AppCompatActivity implements TextWatcher, Com
         buttonCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(LoginActivity.this,RegisterActivity.class);
+                Intent intent1 = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent1);
             }
         });
     }
 
+    private void CheckEmailExits() {
+        final String email = edt_email.getText().toString().trim();
+        final String password = edt_password.getText().toString().trim();
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(LoginActivity.this, "Vui lòng nhập email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(LoginActivity.this, "Vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-    private void Login(final String email, final String password){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_CHECKEMAIL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success_text = jsonObject.getString("success");
+                            if (success_text.equals("0")) {
+                                Toast.makeText(LoginActivity.this, "Email này chưa được đăng ký! Bạn vui lòng đăng ký trước", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(LoginActivity.this, LoginActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
+                            if(success_text.equals("1")){
+                                Login();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(LoginActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", email);
+
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+    private void Login() {
+        final String email = edt_email.getText().toString().trim();
+        final String password = edt_password.getText().toString().trim();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOGIN,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try{
+                        try {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
                             JSONArray jsonArray = jsonObject.getJSONArray("login");
 
-                            if(success.equals("1")){
-                                for(int i = 0; i < jsonArray.length(); i++){
+                            if (success.equals("1")) {
+                                for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject object = jsonArray.getJSONObject(i);
 
                                     String name = object.getString("username").trim();
@@ -141,18 +227,19 @@ public class LoginActivity extends AppCompatActivity implements TextWatcher, Com
                                     sessionManager.createSession(name, email, id);
 
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    intent.putExtra("username",name);
-                                    intent.putExtra("email",email);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intent.putExtra("username", name);
+                                    intent.putExtra("email", email);
                                     startActivity(intent);
+                                    finish();
                                 }
-                                Toast.makeText(LoginActivity.this, "Login Success!", Toast.LENGTH_SHORT).show();
-                            }else{
-                                Toast.makeText(LoginActivity.this, "Login Error!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Đăng nhập thất bại!", Toast.LENGTH_SHORT).show();
                             }
-                        }catch(JSONException e){
+                        } catch (JSONException e) {
                             e.printStackTrace();
                             progressBar.setVisibility(View.GONE);
-                            Toast.makeText(LoginActivity.this, "Error!"+e.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Error!" + e.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
@@ -165,7 +252,7 @@ public class LoginActivity extends AppCompatActivity implements TextWatcher, Com
                 }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String>params = new HashMap<>();
+                Map<String, String> params = new HashMap<>();
                 params.put("email", email);
                 params.put("password", password);
 
@@ -196,16 +283,16 @@ public class LoginActivity extends AppCompatActivity implements TextWatcher, Com
         managePrefs();
     }
 
-    private void managePrefs(){
-        if(rem_userpass.isChecked()){
+    private void managePrefs() {
+        if (rem_userpass.isChecked()) {
             editor.putString(KEY_USERNAME, edt_email.getText().toString().trim());
             editor.putString(KEY_PASS, edt_password.getText().toString().trim());
             editor.putBoolean(KEY_REMEMBER, true);
             editor.apply();
-        }else{
+        } else {
             editor.putBoolean(KEY_REMEMBER, false);
-            editor.remove(KEY_PASS);//editor.putString(KEY_PASS,"");
-            editor.remove(KEY_USERNAME);//editor.putString(KEY_USERNAME, "");
+            editor.remove(KEY_PASS);
+            editor.remove(KEY_USERNAME);
             editor.apply();
         }
     }

@@ -2,9 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hanakochan.doan">
 
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <permission
+        android:name="com.example.yourpackage.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.example.yourpackage.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -15,15 +28,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.GetEmailActivity"></activity>
+        <activity android:name=".activities.DetailRoommateResultActivity"></activity>
+        <activity android:name=".activities.SearchResultRoommateActivity" />
+        <activity android:name=".activities.SearchResultActivity" />
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/map_key" />
+
+        <activity android:name=".activities.APIActivity" />
+        <activity android:name=".activities.SearchRoommateActivity" />
+        <activity android:name=".activities.SearchRoomActivity" />
+        <activity android:name=".activities.GetEmailActivity" />
         <activity android:name=".activities.ForgotPasswordActivity" />
         <activity android:name=".activities.DetailHistoryActivity" />
-        <activity android:name=".activities.MessageDetailActivity" />
         <activity android:name=".activities.DetailRoommateActivity" />
         <activity android:name=".activities.DetailRoomActivity" />
         <activity android:name=".activities.AddRoommateActivity" />
         <activity android:name=".activities.AddRoomActivity" />
-        <activity android:name=".activities.SearchRoomActivity" />
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/title_activity_main" />

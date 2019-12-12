@@ -1,42 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container.addroom"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.SearchRoomActivity">
-        <include
-            layout="@layout/toolbar_search_room">
-        </include>
-    <LinearLayout
+    android:background="@color/background"
+    tools:context=".activities.AddRoomActivity">
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@color/colorPrimary">
-        <Spinner
-            android:id="@+id/id_spinner_city"
-            android:layout_width="90dp"
-            android:layout_height="50dp"
-            android:textSize="20dp" />
-        <SearchView
+        android:layout_height="match_parent">
+
+        <include layout="@layout/toolbar_add_room"></include>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layoutDirection="rtl">
-        </SearchView>
-    </LinearLayout>
-    <TextView
-        android:id="@+id/tv_message"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="110dp"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_marginTop="110dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="70dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="?attr/actionBarSize"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:orientation="vertical">
 
-</RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tỉnh/Thành phố:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size" />
+
+            <Spinner
+                android:id="@+id/id_city"
+                android:layout_width="380dp"
+                android:layout_height="40dp"
+                android:hint="Chọn Tỉnh/Thành phố"
+                android:textSize="@dimen/text_spinner" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Quận/Huyện:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size" />
+
+            <Spinner
+                android:id="@+id/id_district"
+                android:layout_width="380dp"
+                android:layout_height="40dp"
+                android:hint="Chọn Quận/Huyện"
+                android:textSize="@dimen/text_spinner" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Phường/Xã:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size" />
+
+            <Spinner
+                android:id="@+id/id_ward"
+                android:layout_width="380dp"
+                android:layout_height="40dp"
+                android:hint="Chọn Phường/Xã"
+                android:textSize="@dimen/text_spinner" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Giá:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size" />
+
+            <Spinner
+                android:id="@+id/id_price"
+                android:layout_width="380dp"
+                android:layout_height="40dp"
+                android:hint="Giá"
+                android:textSize="@dimen/text_spinner" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/id_button_Searchroom"
+                    android:layout_width="320dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/radius"
+                    android:text="TÌM KIẾM"
+                    android:textColor="@color/text" />
+                <Button
+                    android:id="@+id/id_button_Searchroom_map"
+                    android:layout_width="320dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/radius"
+                    android:text="TÌM KIẾM QUANH ĐÂY"
+                    android:textColor="@color/text" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

@@ -14,10 +14,6 @@
         android:icon="@drawable/ic_assignment_black_24dp"
         android:title="History" />
     <item
-        android:id="@+id/navigation_message"
-        android:icon="@drawable/ic_message_black_24dp"
-        android:title="Message" />
-    <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_account_circle_black_24dp"
         android:title="Profile" />

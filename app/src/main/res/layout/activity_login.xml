@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.LoginActivity"
     android:background="@color/colorPrimary"
-    android:weightSum="10">
+    android:weightSum="10"
+    tools:context=".activities.LoginActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -36,110 +36,120 @@
                 android:textColor="@color/text"
                 android:textSize="20sp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:gravity="center">
+
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/title_signin"
+                android:textColor="@color/text"
                 android:textSize="25sp"
-                tools:layout_editor_absoluteX="162dp"
-                tools:layout_editor_absoluteY="219dp"
                 android:textStyle="bold"
-                android:textColor="@color/text"/>
+                tools:layout_editor_absoluteX="162dp"
+                tools:layout_editor_absoluteY="219dp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_marginTop="35dp"
             android:gravity="center"
-            android:layout_marginTop="25dp">
+            android:orientation="vertical">
+
             <EditText
                 android:id="@+id/edt_username"
                 android:layout_width="320dp"
                 android:layout_height="40dp"
-                android:ems="10"
-                android:textSize="16sp"
-                android:textColor="@color/text"
-                android:hint="@string/hint_Email"
-                android:inputType="textPersonName"
-                tools:layout_editor_absoluteX="58dp"
-                tools:layout_editor_absoluteY="341dp"
+                android:autofillHints="@string/autofillhint_email"
                 android:drawableStart="@drawable/ic_account_19"
                 android:drawableLeft="@drawable/ic_account_19"
-                android:autofillHints="@string/autofillhint_email" />
+                android:ems="10"
+                android:hint="@string/hint_Email"
+                android:inputType="textPersonName"
+                android:textColor="@color/text"
+                android:textSize="16sp"
+                tools:layout_editor_absoluteX="58dp"
+                tools:layout_editor_absoluteY="341dp" />
+
             <EditText
                 android:id="@+id/edt_password"
                 android:layout_width="320dp"
                 android:layout_height="40dp"
-                android:ems="10"
-                android:textSize="16sp"
-                android:textColor="@color/text"
-                android:drawableLeft="@drawable/ic_lock_19dp"
-                android:hint="@string/hint_Password"
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_lock_19dp"
+                android:ems="10"
+                android:hint="@string/hint_Password"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
+                android:textColor="@color/text"
+                android:textSize="16sp"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="456dp" />
+
             <LinearLayout
                 android:layout_width="320dp"
                 android:layout_height="wrap_content">
+
                 <CheckBox
-                    android:text="Nhớ tên đăng nhập và mật khẩu?"
+                    android:id="@+id/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/checkBox"
-                    android:textSize="16sp"
-                    android:textColor="@color/text"/>
+                    android:text="Nhớ tên đăng nhập và mật khẩu?"
+                    android:textColor="@color/text"
+                    android:textSize="16sp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:gravity="center"
+                android:orientation="vertical"
                 android:paddingTop="10dp">
+
                 <Button
                     android:id="@+id/btnLogin"
                     android:layout_width="320dp"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@drawable/radius"
                     android:text="@string/title_signin"
                     android:textColor="@color/text"
                     android:textSize="16sp"
-                    android:layout_marginBottom="5dp"
                     tools:layout_editor_absoluteX="152dp"
                     tools:layout_editor_absoluteY="585dp" />
+
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:text="@string/link_forgot_password"
                     android:textColor="@color/text"
                     android:textColorLink="@color/text"
                     android:textSize="16sp"
-                    android:layout_marginBottom="5dp"
                     tools:layout_editor_absoluteX="58dp"
                     tools:layout_editor_absoluteY="417dp" />
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/or"
-                    android:textColor="@color/text"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="5dp"
-                    tools:layout_editor_absoluteX="58dp"
-                    tools:layout_editor_absoluteY="417dp" />
+
+                <View
+                    android:layout_width="250dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/black" />
+
                 <Button
                     android:id="@+id/btnCreate"
                     android:layout_width="320dp"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/radius"
                     android:text="@string/create_account"
                     android:textColor="@color/text"

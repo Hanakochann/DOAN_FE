@@ -1,155 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".activities.DetailRoomActivity">
-    <androidx.appcompat.widget.Toolbar
+
+    <include
         android:id="@+id/tv_title"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        app:layout_collapseMode="pin"
-        android:theme="@style/Theme.AppCompat.Light"
-        android:background="@color/colorPrimary">
-    </androidx.appcompat.widget.Toolbar>
+        layout="@layout/toolbar_detail_roommate" />
+
     <androidx.core.widget.NestedScrollView
-        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        android:padding="16dp">
+        android:layout_marginTop="50dp"
+        android:padding="16dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center">
+
                 <TextView
+                    android:id="@+id/detail_title"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/detail_title"
                     android:text="THÔNG TIN PHÒNG Ở GHÉP"
                     android:textColor="@color/black"
-                    android:textSize="20dp"/>
+                    android:textSize="18sp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:text="Mã phòng: "
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
+                        android:text="Mã phòng: "
                         android:textColor="#333"
-                        android:textSize="18dp"/>
+                        android:textSize="@dimen/text_size" />
+
                     <TextView
                         android:id="@+id/detail_roommate_tvId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:hint="Title"
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
                         android:textColor="#333"
-                        android:textSize="18dp"
-                        />
+                        android:textSize="@dimen/text_size" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:text="Loại phòng: "
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
-                        android:textColor="#333"
-                        android:textSize="18dp"/>
-                    <TextView
-                        android:id="@+id/detail_roommate_tvTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:hint="Title"
-                        android:layout_toEndOf="@+id/imageView"
-                        android:layout_toRightOf="@+id/imageView"
-                        android:textColor="#333"
-                        android:textSize="18dp"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
                         android:text="Giá phòng mỗi người: "
-                        android:layout_toEndOf="@+id/imageView"
-                        android:layout_toRightOf="@+id/imageView"
                         android:textColor="#333"
-                        android:textSize="18dp"/>
+                        android:textSize="@dimen/text_size" />
+
                     <TextView
                         android:id="@+id/detail_roommate_tvPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:hint="price"
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:text=" VND"
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
+                        android:text=" VND"
                         android:textColor="#333"
-                        android:textSize="18dp"/>
+                        android:textSize="@dimen/text_size" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:text="GIới tính: "
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
+                        android:text="Giới tính: "
                         android:textColor="#333"
-                        android:textSize="18dp"/>
+                        android:textSize="@dimen/text_size" />
+
                     <TextView
                         android:id="@+id/detail_roommate_tvgender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:hint="gender"
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -163,18 +146,45 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:text="Đường: "
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
+
                     <TextView
                         android:id="@+id/detail_roommate_tvstreet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:hint="street"
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:text="Phường/Xã: "
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/detail_roommate_tvward"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+                </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -188,88 +198,101 @@
                         android:layout_toRightOf="@+id/imageView"
                         android:text="Quận/Huyện: "
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
+
                     <TextView
                         android:id="@+id/detail_roommate_tvdistrict"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:hint="district"
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
                         android:textColor="#333"
-                        android:textSize="18dp"
-                        />
+                        android:textSize="@dimen/text_size" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:text="Tỉnh/Thành phố: "
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
+                        android:text="Tỉnh/Thành phố: "
                         android:textColor="#333"
-                        android:textSize="18dp"/>
+                        android:textSize="@dimen/text_size" />
+
                     <TextView
                         android:id="@+id/detail_roommate_tvcity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:hint="city"
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
                         android:textColor="#333"
-                        android:textSize="18dp" />
+                        android:textSize="@dimen/text_size" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:text="Ngày : "
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
+                        android:text="Ngày : "
                         android:textColor="#333"
-                        android:textSize="18dp"/>
+                        android:textSize="@dimen/text_size" />
+
                     <TextView
                         android:id="@+id/detail_roommate_tvTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:hint="Title"
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
                         android:textColor="#333"
-                        android:textSize="18dp"
-                        />
+                        android:textSize="@dimen/text_size" />
                 </LinearLayout>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="160dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn_view"
+                    android:layout_width="320dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/radius"
+                    android:text="@string/button_View"
+                    android:textColor="@color/text"
+                    tools:layout_editor_absoluteX="185dp"
+                    tools:layout_editor_absoluteY="640dp" />
+
+                <Button
+                    android:id="@+id/btn_call_roomate"
+                    android:layout_width="320dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/radius"
+                    android:text="@string/button_Call"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/text_size"
+                    tools:layout_editor_absoluteX="185dp"
+                    tools:layout_editor_absoluteY="640dp" />
+            </LinearLayout>
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="600dp"
-        android:layout_gravity="center">
-        <Button
-            android:id="@+id/btn_message_roomate"
-            android:layout_width="380dp"
-            android:layout_height="50dp"
-            android:text="@string/button_Message"
-            android:textColor="@color/text"
-            android:textSize="20sp"
-            android:background="@drawable/radius"
-            tools:layout_editor_absoluteX="185dp"
-            tools:layout_editor_absoluteY="640dp" />
-    </LinearLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>
