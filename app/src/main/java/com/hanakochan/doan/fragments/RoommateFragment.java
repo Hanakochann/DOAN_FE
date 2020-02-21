@@ -71,7 +71,7 @@ public class RoommateFragment extends Fragment {
 
         toolbar = view.findViewById(R.id.toolbar_roommate_id);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        toolbar.setTitle("ROOMMATE");
+        toolbar.setTitle("Roommate");
         setHasOptionsMenu(true);
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
         recyclerView = view.findViewById(R.id.recyclerView_Roommate);
@@ -101,6 +101,7 @@ public class RoommateFragment extends Fragment {
                         room.setWard(jsonObject.getString("ward_name"));
                         room.setStreet(jsonObject.getString("street_name"));
                         room.setPhone(jsonObject.getString("phone"));
+                        room.setNote(jsonObject.getString("note"));
                         room.setGender_roommate(jsonObject.getString("gender_roommate"));
                         room.setTime(jsonObject.getString("time_post"));
                         lstRoom.add(room);

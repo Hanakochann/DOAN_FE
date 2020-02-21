@@ -24,6 +24,7 @@ public class RecyclerViewAdapterSearch extends RecyclerView.Adapter<RecyclerView
     private Context mcontext;
     private ArrayList<Room> mData;
     private ArrayList<Room> mDataList;
+    private String verified;
 
     public RecyclerViewAdapterSearch(Context mcontext, ArrayList<Room> mData) {
         this.mcontext = mcontext;
@@ -76,6 +77,13 @@ public class RecyclerViewAdapterSearch extends RecyclerView.Adapter<RecyclerView
         holder.tv_address.setText("Địa chỉ: " + mData.get(position).getNumber() + ", " + mData.get(position).getStreet() + ", " + mData.get(position).getWard() + ", " + mData.get(position).getDistrict() + ", " + mData.get(position).getCity());
         holder.tv_time.setText(mData.get(position).getTime());
         Glide.with(mcontext).load(mData.get(position).getImage()).apply(options).into(holder.imageView);
+        holder.search_verified.setText(mData.get(position).getVerified());
+        verified = (String) mData.get(position).getVerified();
+        if(verified.equals("1")) {
+            holder.image_search_verified.setVisibility(View.VISIBLE);
+        }else {
+            holder.image_search_verified.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -96,7 +104,8 @@ public class RecyclerViewAdapterSearch extends RecyclerView.Adapter<RecyclerView
         TextView tv_type;
         TextView tv_address;
         TextView tv_time;
-        ImageView imageView;
+        TextView search_verified;
+        ImageView imageView, image_search_verified;
         LinearLayout view_container;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -107,7 +116,10 @@ public class RecyclerViewAdapterSearch extends RecyclerView.Adapter<RecyclerView
             tv_price = itemView.findViewById(R.id.tvPrice);
             tv_address = itemView.findViewById(R.id.tvAddress);
             tv_time = itemView.findViewById(R.id.tvTime);
+            search_verified = itemView.findViewById(R.id.search_verified_id);
+            search_verified.setVisibility(View.INVISIBLE);
             imageView = itemView.findViewById(R.id.imgView);
+            image_search_verified = itemView.findViewById(R.id.search_verified);
         }
     }
 

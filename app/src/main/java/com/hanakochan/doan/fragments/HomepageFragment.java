@@ -62,10 +62,6 @@ public class HomepageFragment extends Fragment {
     private JsonArrayRequest request;
     private RequestQueue requestQueue;
     private ArrayList<Room> lstRoom = new ArrayList<>();
-    private ArrayList<Room> lstSearch = new ArrayList<>();
-    String[] list = {"Huế", "Đà Nẵng"};
-    String mtext;
-    int check;
 
     public HomepageFragment() {
     }
@@ -83,7 +79,7 @@ public class HomepageFragment extends Fragment {
         lstRoom = new ArrayList<>();
         toolbar = view.findViewById(R.id.toolbar_home_id);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        toolbar.setTitle("ROOM");
+        toolbar.setTitle("Room");
         setHasOptionsMenu(true);
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
         recyclerView = view.findViewById(R.id.recyclerView);
@@ -92,22 +88,6 @@ public class HomepageFragment extends Fragment {
     }
 
     private void collectData() {
-//        if(check == 0){
-//            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//            builder.setTitle("Chọn khu vực muốn tìm kiếm?");
-//            builder.setSingleChoiceItems(list, -1, new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//                    mtext = list[i];
-//                    check = 1;
-//                    dialogInterface.dismiss();
-//                }
-//            });
-//            AlertDialog alertDialog = builder.create();
-//            alertDialog.show();
-//        }
-//        final String city = mtext;
-//        Toast.makeText(getActivity(), mtext, Toast.LENGTH_SHORT).show();
         request = new JsonArrayRequest(URL_READ, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -124,12 +104,13 @@ public class HomepageFragment extends Fragment {
                         room.setWidth(jsonObject.getString("width"));
                         room.setSlot_available(jsonObject.getString("slot_available"));
                         room.setOther(jsonObject.getString("other"));
-                        room.setImage(jsonObject.getString("img_room"));
+                        room.setImage(jsonObject.getString("image_name"));
                         room.setCity(jsonObject.getString("city_name"));
                         room.setDistrict(jsonObject.getString("district_name"));
                         room.setWard(jsonObject.getString("ward_name"));
                         room.setStreet(jsonObject.getString("street_name"));
                         room.setNumber(jsonObject.getString("number"));
+                        room.setVerified(jsonObject.getString("verified"));
                         room.setTime(jsonObject.getString("time_post"));
                         room.setBirthday(jsonObject.getString("birthday"));
                         room.setHometown(jsonObject.getString("hometown"));

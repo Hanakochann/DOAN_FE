@@ -75,7 +75,6 @@ public class AddRoomActivity extends AppCompatActivity {
     private EditText edt_number, edt_slot_available, edt_price, edt_lenght, edt_width, edt_other;
     private Button btn_post;
     private static String URL_ADD = ip_config + "/post_room.php";
-    private static String URL_UPLOAD = ip_config + "/upload_room_photo.php";
     private static final int IMAGE_REQUEST = 1;
     private static final String TAG = AddRoomActivity.class.getSimpleName();
     TextView tv_city, tv_district, tv_ward, tv_street, tv_type;
@@ -361,7 +360,6 @@ public class AddRoomActivity extends AppCompatActivity {
 
             public void onClick(View view) {
                 addRoom();
-                Countinue();
             }
         });
     }
@@ -465,6 +463,7 @@ public class AddRoomActivity extends AppCompatActivity {
     }
 
     private void addRoom() {
+        final String verified = "0";
         final String city = spinner_city.getSelectedItem().toString().trim();
         final String district = spinner_district.getSelectedItem().toString().trim();
         final String ward = spinner_ward.getSelectedItem().toString().trim();
@@ -510,6 +509,28 @@ public class AddRoomActivity extends AppCompatActivity {
                             String success_text = jsonObject.getString("success");
                             if (success_text.equals("1")) {
                                 Toast.makeText(AddRoomActivity.this, "Đăng phòng thành công!", Toast.LENGTH_SHORT).show();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(AddRoomActivity.this);
+                                builder.setMessage("Bạn có muốn đăng phòng tiếp hay không?");
+                                DialogInterface.OnClickListener dOnClickListener = new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        switch (i) {
+                                            case DialogInterface.BUTTON_POSITIVE:
+                                                dialogInterface.cancel();
+                                                Intent intent = new Intent(AddRoomActivity.this, AddRoomActivity.class);
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(intent);
+                                                break;
+                                            case DialogInterface.BUTTON_NEGATIVE:
+                                                finish();
+                                                break;
+                                        }
+                                    }
+                                };
+                                builder.setPositiveButton("Có", dOnClickListener);
+                                builder.setNegativeButton("Không", dOnClickListener);
+                                AlertDialog dialog = builder.create();
+                                dialog.show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -540,37 +561,12 @@ public class AddRoomActivity extends AppCompatActivity {
                 params.put("district_name", district);
                 params.put("ward_name", ward);
                 params.put("street_name", street);
-
+                params.put("verified", verified);
                 return params;
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(AddRoomActivity.this);
         requestQueue.add(stringRequest);
-    }
-
-    private void Countinue() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(AddRoomActivity.this);
-        builder.setMessage("Bạn có muốn đăng phòng tiếp hay không?");
-        DialogInterface.OnClickListener dOnClickListener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                switch (i) {
-                    case DialogInterface.BUTTON_POSITIVE:
-                        dialogInterface.cancel();
-                        Intent intent = new Intent(AddRoomActivity.this, AddRoomActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        break;
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        finish();
-                        break;
-                }
-            }
-        };
-        builder.setPositiveButton("Có", dOnClickListener);
-        builder.setNegativeButton("Không", dOnClickListener);
-        AlertDialog dialog = builder.create();
-        dialog.show();
     }
 
     @Override

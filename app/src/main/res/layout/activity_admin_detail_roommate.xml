@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".activities.DetailRoomActivity">
+
+    <include
+        android:id="@+id/tv_title"
+        layout="@layout/toolbar_detail_roommate" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:padding="16dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/detail_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="THÔNG TIN PHÒNG Ở GHÉP"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:text="Mã phòng: "
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/detail_roommate_tvId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:text="Giá phòng mỗi người: "
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/detail_roommate_tvPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:text=" VND"
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:text="Giới tính: "
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/detail_roommate_tvgender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:text="Đường: "
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/detail_roommate_tvstreet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:text="Phường/Xã: "
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/detail_roommate_tvward"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:text="Quận/Huyện: "
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/detail_roommate_tvdistrict"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:text="Tỉnh/Thành phố: "
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/detail_roommate_tvcity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:text="Yêu cầu: "
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/detail_roommate_tvnote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:text="Ngày : "
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/detail_roommate_tvTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:textColor="#333"
+                        android:textSize="@dimen/text_size" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

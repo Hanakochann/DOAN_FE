@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import com.hanakochan.doan.activities.AdminMainActivity;
 import com.hanakochan.doan.activities.ForgotPasswordActivity;
 import com.hanakochan.doan.activities.GetEmailActivity;
 import com.hanakochan.doan.activities.LoginActivity;
@@ -111,5 +112,12 @@ public class SessionManager {
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
         ((MainActivity) context).finish();
+    }
+    public void logoutAdmin() {
+        editor.clear();
+        editor.commit();
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+        ((AdminMainActivity) context).finish();
     }
 }

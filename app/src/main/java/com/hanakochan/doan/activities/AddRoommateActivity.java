@@ -84,7 +84,7 @@ public class AddRoommateActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar_add_roommate);
         setSupportActionBar(toolbar);
-        AddRoommateActivity.this.setTitle("Tìm bạn ở ghép");
+        AddRoommateActivity.this.setTitle("Add Roommate");
 
         sessionManager = new SessionManager(AddRoommateActivity.this);
         sessionManager.checkLogin();

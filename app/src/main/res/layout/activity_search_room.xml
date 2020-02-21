@@ -95,14 +95,7 @@
                     android:background="@drawable/radius"
                     android:text="TÌM KIẾM"
                     android:textColor="@color/text" />
-                <Button
-                    android:id="@+id/id_button_Searchroom_map"
-                    android:layout_width="320dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/radius"
-                    android:text="TÌM KIẾM QUANH ĐÂY"
-                    android:textColor="@color/text" />
+
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>

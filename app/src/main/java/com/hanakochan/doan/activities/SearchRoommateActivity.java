@@ -60,7 +60,7 @@ public class SearchRoommateActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar_add_room);
         setSupportActionBar(toolbar);
-        SearchRoommateActivity.this.setTitle("Tìm kiếm");
+        SearchRoommateActivity.this.setTitle("Search Roommate");
 
         spinner_city = findViewById(R.id.id_city);
         spinner_district = findViewById(R.id.id_district);
@@ -148,57 +148,10 @@ public class SearchRoommateActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 street_list.clear();
                 ward_list.clear();
-//                listStreet.clear();
                 listWard.clear();
-                String selectedItemText = (String) adapterView.getItemAtPosition(i);
                 String selectedItemText1 = (String) adapterView.getItemAtPosition(i);
-//                this.doDistrictInBackground(selectedItemText);
                 this.doDistrictInBackground1(selectedItemText1);
             }
-
-//            public void doDistrictInBackground(String text) {
-//
-//                InputStream inputStream_Street = null;
-//
-//                String resultStreet = "";
-//
-//                try {
-//                    HttpClient httpClient_Street = new DefaultHttpClient();
-//                    HttpPost httpPost_Street = new HttpPost(ip_config + "/load_data_street.php");
-//                    HttpResponse httpResponse_Street = httpClient_Street.execute(httpPost_Street);
-//                    HttpEntity entity_Street = httpResponse_Street.getEntity();
-//                    inputStream_Street = entity_Street.getContent();
-//
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//
-//                try {
-//                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream_Street, "utf-8"));
-//
-//                    String line = "";
-//                    while ((line = bufferedReader.readLine()) != null) {
-//                        resultStreet += line;
-//                    }
-//                    inputStream_Street.close();
-//
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                try {
-//                    JSONArray jsonArray = new JSONArray(resultStreet);
-//                    for (int i = 0; i <= jsonArray.length(); i++) {
-//                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-//                        if (jsonObject.getString("district_name").equals(text)) {
-//                            street_list.add(jsonObject.getString("street_name"));
-//                        }
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//                listStreet.addAll(street_list);
-//                arrayAdapter_Street.notifyDataSetChanged();
-//            }
 
             public void doDistrictInBackground1(String text) {
 
@@ -252,9 +205,6 @@ public class SearchRoommateActivity extends AppCompatActivity {
 
         arrayAdapter_Ward = new ArrayAdapter<String>(this, R.layout.spinner_ward_layout, R.id.tv_spinner_ward, listWard);
         spinner_ward.setAdapter(arrayAdapter_Ward);
-
-//        arrayAdapter_Street = new ArrayAdapter<String>(this, R.layout.spinner_street_layout, R.id.tv_spinner_street, listStreet);
-//        spinner_street.setAdapter(arrayAdapter_Street);
 
         btn_Search = findViewById(R.id.id_button_Searchroom);
         btn_Search.setOnClickListener(new View.OnClickListener() {

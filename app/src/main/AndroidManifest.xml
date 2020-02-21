@@ -28,7 +28,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.DetailRoommateResultActivity"></activity>
+        <activity android:name=".activities.AdminSearchResultRoommateActivity"></activity>
+        <activity android:name=".activities.AdminSearchRoommateActivity" />
+        <activity android:name=".activities.AdminDetailRoommateActivity" />
+        <activity android:name=".activities.AdminSearchRoomActivity" />
+        <activity android:name=".activities.AdminSearchResultActivity" />
+        <activity android:name=".activities.AdminDetailRoomActivity" />
+        <activity android:name=".activities.AdminMainActivity" />
+        <activity android:name=".activities.DetailHistoryRoommateActivity" />
+        <activity android:name=".activities.DetailRoommateResultActivity" />
         <activity android:name=".activities.SearchResultRoommateActivity" />
         <activity android:name=".activities.SearchResultActivity" />
 

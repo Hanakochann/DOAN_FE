@@ -38,6 +38,7 @@ import static com.hanakochan.doan.models.Config.ip_config;
 public class SearchResultActivity extends AppCompatActivity {
     private static String URL_SEARCH = ip_config + "/search_room.php";
     Toolbar toolbar;
+    String search_price_start, search_price_end;
     RecyclerView recyclerView;
     private JsonArrayRequest request;
     private RequestQueue requestQueue;
@@ -67,7 +68,24 @@ public class SearchResultActivity extends AppCompatActivity {
         final String city = getIntent().getExtras().getString("city");
         final String district = getIntent().getExtras().getString("district");
         final String ward = getIntent().getExtras().getString("ward");
-        request = new JsonArrayRequest(Request.Method.GET, URL_SEARCH + "?city_name=" + city + "&district_name=" + district + "&ward_name=" + ward, null, new Response.Listener<JSONArray>() {
+        final String price = getIntent().getExtras().getString("price");
+        if(price.equals("Từ 0 đến 1,000,000 VND")){
+            search_price_start = "0";
+            search_price_end = "1000000";
+        }
+        if(price.equals("Từ 1,000,000 đến 3,000,000 VND")){
+            search_price_start = "1000000";
+            search_price_end = "3000000";
+        }
+        if(price.equals("Từ 3,000,000 đến 5,000,000 VND")){
+            search_price_start = "3000000";
+            search_price_end = "5000000";
+        }
+        if(price.equals("Lớn hơn 5,000,000 VND")){
+            search_price_start = "5000000";
+            search_price_end = "100000000";
+        }
+        request = new JsonArrayRequest(Request.Method.GET, URL_SEARCH + "?city_name=" + city + "&district_name=" + district + "&ward_name=" + ward + "&price_start=" +search_price_start+ "&price_end="+search_price_end, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 JSONObject jsonObject = null;
@@ -82,11 +100,12 @@ public class SearchResultActivity extends AppCompatActivity {
                         room.setWidth(jsonObject.getString("width"));
                         room.setSlot_available(jsonObject.getString("slot_available"));
                         room.setOther(jsonObject.getString("other"));
-                        room.setImage(jsonObject.getString("img_room"));
+                        room.setImage(jsonObject.getString("image_name"));
                         room.setCity(jsonObject.getString("city_name"));
                         room.setDistrict(jsonObject.getString("district_name"));
                         room.setWard(jsonObject.getString("ward_name"));
                         room.setStreet(jsonObject.getString("street_name"));
+                        room.setVerified(jsonObject.getString("verified"));
                         room.setNumber(jsonObject.getString("number"));
                         room.setTime(jsonObject.getString("time_post"));
                         room.setBirthday(jsonObject.getString("birthday"));

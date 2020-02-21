@@ -16,16 +16,18 @@ import com.hanakochan.doan.R;
 public class DetailHistoryActivity extends AppCompatActivity {
 
     Toolbar toolbar;
+    String Title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_history);
 
-        toolbar = findViewById(R.id.toolbar_detail_history_id);
+        toolbar = findViewById(R.id.toolbar_detail_history);
         setSupportActionBar(toolbar);
 
         String id = getIntent().getExtras().getString("detail_history_id");
-        String title = getIntent().getExtras().getString("detail_history_type_room");
+        final String title = getIntent().getExtras().getString("detail_history_type_room");
+        Title = title;
         String price = getIntent().getExtras().getString("detail_history_price");
         String length = getIntent().getExtras().getString("detail_history_length");
         String width = getIntent().getExtras().getString("detail_history_width");
@@ -55,6 +57,7 @@ public class DetailHistoryActivity extends AppCompatActivity {
         TextView detail_tv_time = findViewById(R.id.detail_history_tvtime);
         ImageView detail_img_Image = findViewById(R.id.detail_history_imgView);
 
+        detail_title.setTitle(Title);
         detail_tv_id.setText(id);
         detail_tv_title.setText(title);
         detail_tv_price.setText(price);

@@ -41,19 +41,17 @@ public class SearchRoomActivity extends AppCompatActivity {
     Button btn_Search;
     Toolbar toolbar;
 
-    String[] SpinnerListPrice = {"<500,000", "<1,000,000", "<1,500,000"};
+    String[] SpinnerListPrice = {"Từ 0 đến 1,000,000 VND", "Từ 1,000,000 đến 3,000,000 VND", "Từ 3,000,000 đến 5,000,000 VND", "Lớn hơn 5,000,000 VND"};
 
     TextView tv_city, tv_district, tv_ward, tv_street, tv_price;
     ArrayAdapter<String> arrayAdapter_City;
     ArrayAdapter<String> arrayAdapter_District;
     ArrayAdapter<String> arrayAdapter_Ward;
-//    ArrayAdapter<String> arrayAdapter_Street;
     ArrayAdapter<String> arrayAdapter_Price;
 
     ArrayList<String> listCity = new ArrayList<>();
     ArrayList<String> listDistrict = new ArrayList<>();
     ArrayList<String> listWard = new ArrayList<>();
-//    ArrayList<String> listStreet = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +60,11 @@ public class SearchRoomActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar_add_room);
         setSupportActionBar(toolbar);
-        SearchRoomActivity.this.setTitle("Tìm kiếm");
+        SearchRoomActivity.this.setTitle("Search Room");
 
         spinner_city = findViewById(R.id.id_city);
         spinner_district = findViewById(R.id.id_district);
         spinner_ward = findViewById(R.id.id_ward);
-//        spinner_street = findViewById(R.id.id_street);
         spinner_price = findViewById(R.id.id_price);
 
         tv_city = findViewById(R.id.tv_spinner_city);
@@ -151,57 +148,10 @@ public class SearchRoomActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 street_list.clear();
                 ward_list.clear();
-//                listStreet.clear();
                 listWard.clear();
-                String selectedItemText = (String) adapterView.getItemAtPosition(i);
                 String selectedItemText1 = (String) adapterView.getItemAtPosition(i);
-//                this.doDistrictInBackground(selectedItemText);
                 this.doDistrictInBackground1(selectedItemText1);
             }
-
-//            public void doDistrictInBackground(String text) {
-//
-//                InputStream inputStream_Street = null;
-//
-//                String resultStreet = "";
-//
-//                try {
-//                    HttpClient httpClient_Street = new DefaultHttpClient();
-//                    HttpPost httpPost_Street = new HttpPost(ip_config + "/load_data_street.php");
-//                    HttpResponse httpResponse_Street = httpClient_Street.execute(httpPost_Street);
-//                    HttpEntity entity_Street = httpResponse_Street.getEntity();
-//                    inputStream_Street = entity_Street.getContent();
-//
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//
-//                try {
-//                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream_Street, "utf-8"));
-//
-//                    String line = "";
-//                    while ((line = bufferedReader.readLine()) != null) {
-//                        resultStreet += line;
-//                    }
-//                    inputStream_Street.close();
-//
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                try {
-//                    JSONArray jsonArray = new JSONArray(resultStreet);
-//                    for (int i = 0; i <= jsonArray.length(); i++) {
-//                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-//                        if (jsonObject.getString("district_name").equals(text)) {
-//                            street_list.add(jsonObject.getString("street_name"));
-//                        }
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//                listStreet.addAll(street_list);
-//                arrayAdapter_Street.notifyDataSetChanged();
-//            }
 
             public void doDistrictInBackground1(String text) {
 
@@ -255,9 +205,6 @@ public class SearchRoomActivity extends AppCompatActivity {
 
         arrayAdapter_Ward = new ArrayAdapter<String>(this, R.layout.spinner_ward_layout, R.id.tv_spinner_ward, listWard);
         spinner_ward.setAdapter(arrayAdapter_Ward);
-
-//        arrayAdapter_Street = new ArrayAdapter<String>(this, R.layout.spinner_street_layout, R.id.tv_spinner_street, listStreet);
-//        spinner_street.setAdapter(arrayAdapter_Street);
 
         arrayAdapter_Price = new ArrayAdapter<String>(this, R.layout.spinner_price_layout, R.id.tv_spinner_price, SpinnerListPrice);
         spinner_price.setAdapter(arrayAdapter_Price);
@@ -340,13 +287,10 @@ public class SearchRoomActivity extends AppCompatActivity {
         intent.putExtra("city", spinner_city.getSelectedItem().toString());
         intent.putExtra("district", spinner_district.getSelectedItem().toString());
         intent.putExtra("ward", spinner_ward.getSelectedItem().toString());
+        intent.putExtra("price", spinner_price.getSelectedItem().toString());
         startActivity(intent);
     }
 
-    public void startAPI(){
-        Intent intent = new Intent(SearchRoomActivity.this, SearchRoomActivity.class);
-        startActivity(intent);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

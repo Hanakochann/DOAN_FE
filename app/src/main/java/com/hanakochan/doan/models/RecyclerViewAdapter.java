@@ -1,6 +1,7 @@
 package com.hanakochan.doan.models;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +14,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.hanakochan.doan.R;
+import com.hanakochan.doan.activities.AddRoommateActivity;
 import com.hanakochan.doan.activities.DetailRoomActivity;
 
 import java.util.ArrayList;
@@ -28,6 +31,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private Context mcontext;
     private ArrayList<Room> mData;
     private ArrayList<Room> mDataList;
+    private String verified;
 
     public RecyclerViewAdapter(Context mcontext, ArrayList<Room> mData) {
         this.mcontext = mcontext;
@@ -73,13 +77,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
 
         holder.tv_type.setText(mData.get(position).getType());
         holder.tv_price.setText(mData.get(position).getPrice());
         holder.tv_address.setText("Địa chỉ: " + mData.get(position).getNumber() + ", " + mData.get(position).getStreet() + ", " + mData.get(position).getWard() + ", " + mData.get(position).getDistrict() + ", " + mData.get(position).getCity());
         holder.tv_time.setText(mData.get(position).getTime());
         Glide.with(mcontext).load(mData.get(position).getImage()).apply(options).into(holder.imageView);
+        holder.verified_id.setText(mData.get(position).getVerified());
+        verified = (String) mData.get(position).getVerified();
+        if(verified.equals("1")) {
+            holder.imageView_Verified.setVisibility(View.VISIBLE);
+        }else {
+            holder.imageView_Verified.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     @Override
@@ -94,13 +106,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv_price;
         TextView tv_type;
         TextView tv_address;
         TextView tv_time;
-        ImageView imageView;
+        TextView verified_id;
+        ImageView imageView, imageView_Verified;
         LinearLayout view_container;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -112,6 +125,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             tv_address = itemView.findViewById(R.id.tvAddress);
             tv_time = itemView.findViewById(R.id.tvTime);
             imageView = itemView.findViewById(R.id.imgView);
+            imageView_Verified = itemView.findViewById(R.id.verified);
+            verified_id = itemView.findViewById(R.id.verified_id);
+            verified_id.setVisibility(View.INVISIBLE);
         }
     }
 

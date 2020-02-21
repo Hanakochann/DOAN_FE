@@ -69,6 +69,7 @@ public class DetailRoommateActivity extends AppCompatActivity {
         String street = getIntent().getExtras().getString("roommate_detail_street_name");
         String phone_view = getIntent().getExtras().getString("roommate_detail_phone");
         String gender_roommate = getIntent().getExtras().getString("roommate_detail_gender_roommate");
+        String note = getIntent().getExtras().getString("roommate_detail_note");
         String time = getIntent().getExtras().getString("roommate_detail_time");
 
         username = title;
@@ -85,6 +86,7 @@ public class DetailRoommateActivity extends AppCompatActivity {
         TextView roommate_detail_tv_ward = findViewById(R.id.detail_roommate_tvward);
         TextView roommate_detail_tv_street = findViewById(R.id.detail_roommate_tvstreet);
         TextView roommate_detail_tv_gender = findViewById(R.id.detail_roommate_tvgender);
+        TextView roommate_detail_tv_note = findViewById(R.id.detail_roommate_tvnote);
         TextView roommate_detail_tv_time = findViewById(R.id.detail_roommate_tvTime);
 
 
@@ -96,6 +98,7 @@ public class DetailRoommateActivity extends AppCompatActivity {
         roommate_detail_tv_ward.setText(ward);
         roommate_detail_tv_street.setText(street);
         roommate_detail_tv_gender.setText(gender_roommate);
+        roommate_detail_tv_note.setText(note);
         roommate_detail_tv_time.setText(time);
 
 

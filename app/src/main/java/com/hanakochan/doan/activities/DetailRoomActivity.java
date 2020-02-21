@@ -69,7 +69,7 @@ public class DetailRoomActivity extends AppCompatActivity {
         String other = getIntent().getExtras().getString("detail_other");
         String city = getIntent().getExtras().getString("detail_city_name");
         String district = getIntent().getExtras().getString("detail_district_name");
-        String ward = getIntent().getExtras().getString("detail_ward _name");
+        String ward = getIntent().getExtras().getString("detail_ward_name");
         String street = getIntent().getExtras().getString("detail_street_name");
         String number = getIntent().getExtras().getString("detail_number");
         String time = getIntent().getExtras().getString("detail_time");

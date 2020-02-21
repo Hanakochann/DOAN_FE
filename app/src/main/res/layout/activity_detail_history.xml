@@ -7,7 +7,9 @@
     android:background="@color/background"
     tools:context=".activities.DetailHistoryActivity">
 
-    <include layout="@layout/toolbar_detail_history"/>
+    <include
+        android:id="@+id/tv_title"
+        layout="@layout/toolbar_detail_history"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -55,7 +57,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_toEndOf="@+id/imageView"
                         android:layout_toRightOf="@+id/imageView"
-                        android:text="Mã số: "
+                        android:text="Mã phòng: "
                         android:textColor="#333"
                         android:textSize="@dimen/text_size" />
 

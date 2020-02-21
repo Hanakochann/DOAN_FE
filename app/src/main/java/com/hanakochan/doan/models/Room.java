@@ -25,6 +25,8 @@ public class Room {
     private String phone;
     private String hometown;
     private String birthday;
+    private String note;
+    private String verified;
 
     public Room() {
 
@@ -33,7 +35,7 @@ public class Room {
     public Room(String price, String type, String lenght, String width, String slot_available, String other,
                 String city, String district, String ward, String street, String number, String image,
                 String image_user, String username, String gender, String gender_roommate, String id_post,
-                String time, String id_user, String phone, String hometown, String birthday) {
+                String time, String id_user, String phone, String hometown, String birthday, String note, String verified) {
         this.price = price;
         this.lenght = lenght;
         this.width = width;
@@ -56,6 +58,8 @@ public class Room {
         this.hometown = hometown;
         this.phone = phone;
         this.birthday = birthday;
+        this.note = note;
+        this.verified = verified;
     }
 
     public String getUsername() {
@@ -146,6 +150,14 @@ public class Room {
         return birthday;
     }
 
+    public String getNote() {
+        return note;
+    }
+
+    public String getVerified() {
+        return verified;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -232,6 +244,14 @@ public class Room {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public void setVerified(String verified) {
+        this.verified = verified;
     }
 }
 

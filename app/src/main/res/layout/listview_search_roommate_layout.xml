@@ -7,12 +7,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/background">
+            android:background="@drawable/radius_listview">
 
             <ImageView
                 android:id="@+id/roommate_imgView"
@@ -150,11 +151,6 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/black" />
     </LinearLayout>
 
 </LinearLayout>

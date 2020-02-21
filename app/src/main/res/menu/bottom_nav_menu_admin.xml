@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_room"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_room" />
+    <item
+        android:id="@+id/navigation_roommate"
+        android:icon="@drawable/ic_people_black_24dp"
+        android:title="@string/title_dashboard" />
+    <item
+        android:id="@+id/navigation_user"
+        android:icon="@drawable/ic_perm_contact_calendar_black_24dp"
+        android:title="@string/title_user" />
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="Profile" />
+</menu>

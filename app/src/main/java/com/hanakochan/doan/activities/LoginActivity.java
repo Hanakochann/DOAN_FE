@@ -223,15 +223,23 @@ public class LoginActivity extends AppCompatActivity implements TextWatcher, Com
                                     String name = object.getString("username").trim();
                                     String email = object.getString("email").trim();
                                     String id = object.getString("id").trim();
-
-                                    sessionManager.createSession(name, email, id);
-
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    intent.putExtra("username", name);
-                                    intent.putExtra("email", email);
-                                    startActivity(intent);
-                                    finish();
+                                    String role = object.getString("role").trim();
+                                    if(role.equals("1")){
+                                        sessionManager.createSession(name, email, id);
+                                        Toast.makeText(LoginActivity.this, "Admin", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(LoginActivity.this, AdminMainActivity.class);
+                                        intent.putExtra("username", name);
+                                        intent.putExtra("email", email);
+                                        startActivity(intent);
+                                        finish();
+                                    }else{
+                                        sessionManager.createSession(name, email, id);
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        intent.putExtra("username", name);
+                                        intent.putExtra("email", email);
+                                        startActivity(intent);
+                                        finish();
+                                    }
                                 }
                             } else {
                                 Toast.makeText(LoginActivity.this, "Đăng nhập thất bại!", Toast.LENGTH_SHORT).show();

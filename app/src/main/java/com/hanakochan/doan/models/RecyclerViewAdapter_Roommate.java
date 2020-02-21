@@ -59,6 +59,7 @@ public class RecyclerViewAdapter_Roommate extends RecyclerView.Adapter<RecyclerV
                 intent.putExtra("roommate_detail_phone", mData_roommate.get(myViewHolder.getAdapterPosition()).getPhone());
                 intent.putExtra("roommate_detail_gender_roommate", mData_roommate.get(myViewHolder.getAdapterPosition()).getGender_roommate());
                 intent.putExtra("roommate_detail_time", mData_roommate.get(myViewHolder.getAdapterPosition()).getTime());
+                intent.putExtra("roommate_detail_note", mData_roommate.get(myViewHolder.getAdapterPosition()).getNote());
                 intent.putExtra("roommate_detail_img_room", mData_roommate.get(myViewHolder.getAdapterPosition()).getImage());
                 mcontext.startActivity(intent);
             }
@@ -82,7 +83,12 @@ public class RecyclerViewAdapter_Roommate extends RecyclerView.Adapter<RecyclerV
         return mData_roommate.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public void delete(int position){
+        mData_roommate.remove(position);
+        notifyDataSetChanged();
+    }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder    {
 
         TextView roommate_tv_price;
         TextView roommate_tv_username;

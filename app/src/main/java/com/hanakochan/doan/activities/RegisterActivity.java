@@ -107,6 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void Register() {
+        final String role = "0";
         final String username = edt_Name.getText().toString().trim();
         final String email = edt_Email.getText().toString().trim();
         final String password = edt_Pass.getText().toString().trim();
@@ -202,6 +203,7 @@ public class RegisterActivity extends AppCompatActivity {
                 params.put("username", username);
                 params.put("email", email);
                 params.put("password", password);
+                params.put("role", role);
                 return params;
             }
         };
